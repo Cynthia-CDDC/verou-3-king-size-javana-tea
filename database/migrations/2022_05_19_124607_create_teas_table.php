@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('teas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('characteristics');
+            $table->string('name')->unique();
             $table->string('type');
             $table->string('region');
-            $table->string('ingredients');
-            $table->float('price');
+            $table->text('ingredients');
+            $table->decimal('price', 8, 2);
             $table->timestamps();
         });
     }
