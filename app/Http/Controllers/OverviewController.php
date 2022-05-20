@@ -9,8 +9,8 @@ class OverviewController extends Controller
 {
     public function overviewTeas()
     {
-        $tea = Tea::all();
+        $teas = Tea::all();
         // dd($tea);
-        return view('home');
+        return view('home', ['teas' => $teas]);
     }
 }

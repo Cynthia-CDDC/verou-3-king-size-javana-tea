@@ -8,7 +8,7 @@
                 <a href="#">My Collection</a>
             </li>
             <li>
-                <a href="#">Log In</a>
+                <a href="{{ route('login') }}">Log In</a>
             </li>
         </ul>
     </nav>
