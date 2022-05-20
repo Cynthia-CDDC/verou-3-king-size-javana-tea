@@ -9,6 +9,8 @@
 </head>
 
 <body>
+test
+
     @include('_partials.header')
     <main>
         @foreach ($teas as $tea)
