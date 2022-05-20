@@ -16,7 +16,6 @@ use App\Http\Controllers\OverviewController;
 
 Route::get('/', [OverviewController::class, 'overviewTeas']);
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

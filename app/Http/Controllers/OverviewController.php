@@ -10,7 +10,7 @@ class OverviewController extends Controller
     public function overviewTeas()
     {
         $tea = Tea::all();
-        dd($tea);
+        // dd($tea);
         return view('home');
     }
 }

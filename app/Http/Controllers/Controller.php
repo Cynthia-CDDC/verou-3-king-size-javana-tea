@@ -11,9 +11,5 @@ use app\models\Tea;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function databaseTest()
-    {
-        $tea = Tea::all();
-        dd($tea);
-    }
+    
 }
