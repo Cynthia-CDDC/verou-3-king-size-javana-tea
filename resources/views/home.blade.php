@@ -11,6 +11,10 @@
 <body>
     @include('_partials.header')
     <main>
+        @foreach ($teas as $tea)
+            {{ $tea->name }}
+            {{ $tea->type }}
+        @endforeach
 
     </main>
     @include('_partials.footer')
