@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\OverviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +14,11 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [Controller::class, 'databaseTest']);
-});
+Route::get('/', [OverviewController::class, 'overviewTeas']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// require DIR . '/auth.php';
+require __DIR__ . '/auth.php';
