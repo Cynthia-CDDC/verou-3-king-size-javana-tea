@@ -14,7 +14,8 @@
     <main>
         @foreach ($teas as $tea)
             {{ $tea->name }} <br>
-            {{ $tea->type }}
+            {{ $tea->type }} <br>
+            <img src="{{ asset('images/' . $tea->image) }}" alt="photo natural rooibos" height="100" width="120" />
         @endforeach
 
     </main>
