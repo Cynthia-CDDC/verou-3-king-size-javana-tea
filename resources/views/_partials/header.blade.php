@@ -1,8 +1,8 @@
 <header>
-    <nav>
-        <ul>
+    <nav class="flex justify-end">
+        <ul class="flex mx-5 gap-3">
             <li>
-                <a href="#">home</a>
+                <a href="#" class="text-white">Home</a>
             </li>
             <li>
                 <a href="#">My Collection</a>
