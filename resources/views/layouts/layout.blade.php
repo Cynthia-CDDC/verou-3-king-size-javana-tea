@@ -9,9 +9,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-background">
     @include('_partials.header')
-    <main>
+    <main class="py-5">
         @yield('content')
     </main>
     @include('_partials.footer')
