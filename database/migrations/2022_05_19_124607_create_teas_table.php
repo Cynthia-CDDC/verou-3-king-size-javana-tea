@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('type');
-            $table->string('region');
+            $table->string('region')->nullable();
             $table->text('ingredients');
             $table->decimal('price', 8, 2);
             $table->string('image')->nullable();
