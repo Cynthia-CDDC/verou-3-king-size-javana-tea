@@ -14,7 +14,7 @@ use App\Http\Controllers\OverviewController;
 |
 */
 
-Route::get('/', [OverviewController::class, 'overviewTeas']);
+Route::get('/', [OverviewController::class, 'overviewTeas'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
