@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call(TeaSeeder::class);
+        $this->call(CharacteristicSeeder::class);
+        $this->call(CharacteristicTeaSeeder::class);
     }
 }
