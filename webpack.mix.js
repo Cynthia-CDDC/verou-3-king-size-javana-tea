@@ -16,3 +16,5 @@ mix.js("resources/js/app.js", "public/js").postCss(
     "public/css",
     [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
 );
+
+mix.disableSuccessNotifications();
