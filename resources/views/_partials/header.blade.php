@@ -2,7 +2,7 @@
     <nav class="flex justify-end">
         <ul class="flex mx-5 gap-3">
             <li>
-                <a href="#" class="text-white">Home</a>
+                <a href="#">Home</a>
             </li>
             <li>
                 <a href="#">My Collection</a>
