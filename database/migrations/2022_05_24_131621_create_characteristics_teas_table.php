@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('characteristics_teas', function (Blueprint $table) {
+        Schema::create('characteristic_teas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('characteristic_id');
             $table->unsignedBigInteger('tea_id');
             $table->timestamps();
         });
