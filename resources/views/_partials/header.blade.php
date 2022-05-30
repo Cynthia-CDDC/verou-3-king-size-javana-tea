@@ -1,5 +1,10 @@
-<header class="h-24 bg-orange-700 flex items-center justify-end">
-    <nav>
+<header class="h-24 bg-orange-700 flex justify-between items-center">
+    <div class="p-4 flex flex-col items-center">
+        <img src="/images/hot-tea-icons-download-free-png-and-vector-icons-unlimited-393433.png" alt="Tea leaves"
+            class="h-16 w-16">
+        <span class="text-leafgreen">Tea Leaf</span>
+    </div>
+    <nav class="flex">
         <ul class="flex mx-5 gap-3 text-neutral-50 font-bold">
             <li>
                 <a href="{{ route('home') }}"
