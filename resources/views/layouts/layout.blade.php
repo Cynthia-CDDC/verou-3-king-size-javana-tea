@@ -9,9 +9,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="bg-background">
+<body class="bg-background flex flex-col min-h-screen">
     @include('_partials.header')
-    <main class="py-5">
+    <main class="py-5 flex justify-center">
         @yield('content')
     </main>
     @include('_partials.footer')
