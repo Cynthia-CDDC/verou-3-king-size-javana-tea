@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CharacteristicTea extends Model
 {
     use HasFactory;
+
+    public $table = "characteristic_tea";
+
 }
