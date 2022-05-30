@@ -5,7 +5,7 @@
         <div class="order-2 mx-5 w-3/5">
             <h1 class="text-red font-bold">{{ $tea->name }}</h1>
             <p><i>{{ $tea->type }}</i></p>
-            <p>{{ $tea->ingredients }}</p>
+            <p class="py-4">{{ $tea->ingredients }}</p>
             <p>{{ $tea->price }}</p>
         </div>
         <div>
