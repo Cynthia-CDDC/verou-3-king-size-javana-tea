@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teas_characteristics', function (Blueprint $table) {
+        Schema::create('characteristic_teas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tea_id');
             $table->unsignedBigInteger('characteristic_id');
+            $table->unsignedBigInteger('tea_id');
             $table->timestamps();
-
-            $table->foreign('tea_id')->references('id')->on('teas')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('characteristic_id')->references('id')->on('characteristics')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teas_characteristics');
+        Schema::dropIfExists('characteristics_teas');
     }
 };

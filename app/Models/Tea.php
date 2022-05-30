@@ -9,13 +9,13 @@ class Tea extends Model
 {
     use HasFactory;
 
-    public function users_teas()
+    public function teasUsers()
     {
-        return $this->hasMany(UserTea::class);
+        return $this->belongsToMany(User::class)->withPivot('rating', 'favorite', 'review', 'to_tryout')->withTimestamps();
     }
     
-    public function teas_characteristics()
+    public function teasCharacteristics()
     {
-        return $this->hasMany(TeaCharacteristic::class);
+        return $this->belongsToMany(Characteristic::class)->withTimestamps();
     }
 }

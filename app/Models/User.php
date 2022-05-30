@@ -42,8 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function users_teas()
+    public function usersTeas()
     {
-        return $this->hasMany(UserTea::class);
+        return $this->belongsToMany(Tea::class)->withPivot('rating', 'favorite', 'review', 'to_tryout')->withTimestamps();
     }
 }

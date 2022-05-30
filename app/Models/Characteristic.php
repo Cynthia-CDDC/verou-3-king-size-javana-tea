@@ -11,6 +11,6 @@ class Characteristic extends Model
 
     public function teasCharacteristics()
     {
-        return $this->hasMany(TeaCharacteristic::class);
+        return $this->belongsToMany(Tea::class)->withTimestamps();
     }
 }
