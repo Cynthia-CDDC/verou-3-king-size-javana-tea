@@ -13,4 +13,11 @@ class OverviewController extends Controller
         // dd($tea);
         return view('home', ['teas' => $teas]);
     }
+
+    public function detailsTea($id)
+    {
+        $tea = Tea::find($id);
+        // dd($tea);
+        return view('teadetail', ['tea' => $tea]);
+    }
 }
