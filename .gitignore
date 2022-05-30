@@ -13,7 +13,6 @@ yarn-error.log
 /.idea
 /.vscode
 public/js/app.js
-public/mix-manifest.json
-/public/css
 webpack.mix.js
 tailwind.config.js
+public/mix-manifest.json
