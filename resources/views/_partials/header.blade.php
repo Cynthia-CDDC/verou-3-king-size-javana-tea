@@ -5,7 +5,7 @@
         <span class="text-leafgreen">Tea Leaf</span>
     </div>
     <nav class="flex">
-        <ul class="flex mx-5 gap-3 text-neutral-50 font-bold">
+        <ul class="flex mx-6 gap-3 text-neutral-50 font-bold">
             <li>
                 <a href="{{ route('home') }}"
                     class="relative after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-neutral-50">Home</a>
