@@ -20,4 +20,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/details/{id}', [OverviewController::class, 'detailsTea'])->name('details');
+
 require __DIR__ . '/auth.php';
