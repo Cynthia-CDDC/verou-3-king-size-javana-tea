@@ -1,4 +1,4 @@
-<header class="h-24 bg-orange-700 flex justify-between items-center">
+<header class="h-24 bg-orange-800 flex justify-between items-center">
     <div class="p-4 flex flex-col items-center">
         <img src="/images/hot-tea-icons-download-free-png-and-vector-icons-unlimited-393433.png" alt="Tea leaves"
             class="h-16 w-16">
