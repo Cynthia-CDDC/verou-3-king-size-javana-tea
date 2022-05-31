@@ -7,6 +7,12 @@
             <p><i>{{ $tea->type }}</i></p>
             <p class="py-4">{{ $tea->ingredients }}</p>
             <p>{{ $tea->price }}</p>
+
+            <ul>
+            @foreach ($tea->teaCharacteristics as $characteristic)
+                <li>{{ $characteristic->name }}</li>
+            @endforeach
+            </ul>
         </div>
         <div>
             <img src="{{ asset('images/' . $tea->image) }}" alt="Picture of tea" class="w-52 h-52 order-1">
