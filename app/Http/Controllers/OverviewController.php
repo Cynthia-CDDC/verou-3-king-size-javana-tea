@@ -18,7 +18,7 @@ class OverviewController extends Controller
     public function detailsTea($id)
     {
         $tea = Tea::find($id);
-
+        
         return view('teadetail', ['tea' => $tea]);
     }
 }
