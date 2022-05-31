@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Characteristic;
 use Illuminate\Http\Request;
 use App\Models\Tea;
 
@@ -9,15 +10,15 @@ class OverviewController extends Controller
 {
     public function overviewTeas()
     {
-        $teas = Tea::all();
-        // dd($tea);
+        $teas = Tea::get();
+
         return view('home', ['teas' => $teas]);
     }
 
     public function detailsTea($id)
     {
         $tea = Tea::find($id);
-        // dd($tea);
+        
         return view('teadetail', ['tea' => $tea]);
     }
 }
