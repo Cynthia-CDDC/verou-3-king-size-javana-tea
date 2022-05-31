@@ -2,15 +2,15 @@
 
 @section('content')
     <section class="w-4/5 mx-auto flex flex-row flex-wrap justify-between gap-12">
-        @foreach ($resultChar as $res)
+        @foreach ($teas as $tea)
             <article>
-                <!-- <div>
+                <div>
                     <img src="{{ asset('images/' . $tea->image) }}" alt="photo natural rooibos" class="h-72 w-72" />
-                </div> -->
+                </div>
                 <h2 class="text-red font-bold">
-                    {{$res->name}}
+                    {{ $tea->name }}
                 </h2>
-                <!-- <span>&euro; {{ $tea->price }}</span> -->
+                <span>&euro; {{ $tea->price }}</span>
             </article>
         @endforeach
     </section>
