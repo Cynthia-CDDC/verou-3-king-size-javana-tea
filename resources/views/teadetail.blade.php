@@ -9,7 +9,7 @@
             <p>{{ $tea->price }}</p>
 
             <ul>
-            @foreach ($tea->teaCharacteristics as $characteristic)
+            @foreach ($tea->teasCharacteristics as $characteristic)
                 <li>{{ $characteristic->name }}</li>
             @endforeach
             </ul>
