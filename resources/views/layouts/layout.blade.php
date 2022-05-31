@@ -11,9 +11,7 @@
 
 <body class="bg-background flex flex-col min-h-screen">
     @include('_partials.header')
-    <main class="py-5 flex justify-center">
-        @yield('content')
-    </main>
+    @yield('content')
     @include('_partials.footer')
 </body>
 
