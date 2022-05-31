@@ -11,14 +11,14 @@ class OverviewController extends Controller
     public function overviewTeas()
     {
         $teas = Tea::get();
-
+        
         return view('home', ['teas' => $teas]);
     }
 
     public function detailsTea($id)
     {
         $tea = Tea::find($id);
-        
+
         return view('teadetail', ['tea' => $tea]);
     }
 }
