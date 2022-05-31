@@ -691,6 +691,12 @@ select {
 .block {
   display: block;
 }
+.inline-block {
+  display: inline-block;
+}
+.inline {
+  display: inline;
+}
 .flex {
   display: flex;
 }
@@ -793,6 +799,18 @@ select {
 .w-7 {
   width: 1.75rem;
 }
+.w-2\/5 {
+  width: 40%;
+}
+.w-1\/6 {
+  width: 16.666667%;
+}
+.w-5\/6 {
+  width: 83.333333%;
+}
+.w-1\/5 {
+  width: 20%;
+}
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -877,6 +895,18 @@ select {
 }
 .gap-3 {
   gap: 0.75rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-y-2 {
+  row-gap: 0.5rem;
+}
+.gap-y-5 {
+  row-gap: 1.25rem;
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -989,6 +1019,9 @@ select {
 }
 .p-4 {
   padding: 1rem;
+}
+.p-5 {
+  padding: 1.25rem;
 }
 .px-4 {
   padding-left: 1rem;
