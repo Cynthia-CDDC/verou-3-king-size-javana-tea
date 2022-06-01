@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex p-5 justify-between">
         <aside class="w-1/6">
-            <h2 class="pb-2 border-b border-orange-800 text-orange-800 font-bold">Kind</h2>
+            <h2 class="pb-2 border-b border-orange-800 text-orange-800 font-bold">Characteristics</h2>
             <ul class="pt-2">
                 @foreach ($characteristics as $characteristic)
                     <li class="flex items-center gap-3 hover:cursor-pointer">
