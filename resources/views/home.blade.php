@@ -10,7 +10,7 @@
                     @foreach ($characteristics as $characteristic)
                         <li class="flex items-center gap-3 hover:cursor-pointer">
                             <input type="checkbox" id="{{ $characteristic->name }}" name="{{ $characteristic->name }}"
-                                value="{{ $characteristic->name }}" class="hover:cursor-pointer">
+                                value="{{ $characteristic->id }}" class="hover:cursor-pointer">
                             <label for="{{ $characteristic->name }}"
                                 class="hover:cursor-pointer">{{ $characteristic->name }}</label>
                         </li>
