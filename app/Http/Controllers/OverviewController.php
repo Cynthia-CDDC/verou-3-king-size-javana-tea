@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Characteristic;
 use Illuminate\Http\Request;
 use App\Models\Tea;
@@ -14,7 +15,9 @@ class OverviewController extends Controller
         // is there characteristic -> filter, otherwise not
         if ($request->characteristic) {
             $id = $request->characteristic;
-            $teas = Characteristic::find($id);
+            $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($id) {
+                $query->where('characteristic_id', $id);
+            })->get();
         } else {
             $teas = Tea::get();
         }
