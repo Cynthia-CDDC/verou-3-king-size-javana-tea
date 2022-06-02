@@ -3,17 +3,20 @@
 @section('content')
     <div class="flex p-5 justify-between">
         <aside class="w-1/6">
-            <h2 class="pb-2 border-b border-orange-800 text-orange-800 font-bold">Characteristics</h2>
-            <ul class="pt-2">
-                @foreach ($characteristics as $characteristic)
-                    <li class="flex items-center gap-3 hover:cursor-pointer">
-                        <input type="checkbox" id="{{ $characteristic->name }}" name="{{ $characteristic->name }}"
-                            class="hover:cursor-pointer">
-                        <label for="{{ $characteristic->name }}"
-                            class="hover:cursor-pointer">{{ $characteristic->name }}</label>
-                    </li>
-                @endforeach
-            </ul>
+            <form action="" method="get">
+                @csrf
+                <h2 class="pb-2 border-b border-orange-800 text-orange-800 font-bold">Characteristics</h2>
+                <ul class="pt-2">
+                    @foreach ($characteristics as $characteristic)
+                        <li class="flex items-center gap-3 hover:cursor-pointer">
+                            <input type="checkbox" id="{{ $characteristic->name }}" name="{{ $characteristic->name }}"
+                                value="{{ $characteristic->name }}" class="hover:cursor-pointer">
+                            <label for="{{ $characteristic->name }}"
+                                class="hover:cursor-pointer">{{ $characteristic->name }}</label>
+                        </li>
+                    @endforeach
+                </ul>
+            </form>
         </aside>
         <main class="w-4/5">
             <section class="flex flex-wrap justify-end gap-10 p-2">
