@@ -9,13 +9,14 @@
                 <ul class="pt-2">
                     @foreach ($characteristics as $characteristic)
                         <li class="flex items-center gap-3 hover:cursor-pointer">
-                            <input type="checkbox" id="{{ $characteristic->name }}" name="{{ $characteristic->name }}"
+                            <input type="checkbox" id="{{ $characteristic->name }}" name="characteristic"
                                 value="{{ $characteristic->id }}" class="hover:cursor-pointer">
                             <label for="{{ $characteristic->name }}"
                                 class="hover:cursor-pointer">{{ $characteristic->name }}</label>
                         </li>
                     @endforeach
                 </ul>
+                <input type="submit" name="filter" value="filter" />
             </form>
         </aside>
         <main class="w-4/5">
