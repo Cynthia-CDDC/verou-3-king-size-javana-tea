@@ -8,11 +8,20 @@ use App\Models\Tea;
 
 class OverviewController extends Controller
 {
-    public function overviewTeas()
+    public function overviewTeas(Request $request)
     {
-        $teas = Tea::get();
-        $characteristics = Characteristic::get();
+        // dd($_GET);
+        // is there characteristic -> filter, otherwise not
+        if ($request->characteristic) {
+            $id = $request->characteristic;
+            $teas = Characteristic::find($id);
+        } else {
+            $teas = Tea::get();
+        }
 
+        $characteristics = Characteristic::get();
+        // $test = $request->characteristic;
+        // dd($test);
         return view('home', compact('teas', 'characteristics'));
     }
 
