@@ -39,4 +39,15 @@ class OverviewController extends Controller
     {
         return view('mycollection');
     }
+
+    public function saveLike($teaId)
+    {
+        $user = auth()->user();
+        $tea = Tea::find($teaId);
+        dump($user, $tea);
+
+        // TODO: add save here to save to database (teaUser)
+
+        return redirect()->back();
+    }
 }
