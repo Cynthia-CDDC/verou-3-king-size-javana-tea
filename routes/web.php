@@ -22,4 +22,6 @@ Route::get('/dashboard', function () {
 
 Route::get('/details/{id}', [OverviewController::class, 'detailsTea'])->name('details');
 
+Route::get('/mycollection', [OverviewController::class, 'showMyCollection'])->name('mycollection');
+
 require __DIR__ . '/auth.php';

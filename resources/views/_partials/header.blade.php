@@ -11,7 +11,7 @@
                     class="relative after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-neutral-50">Home</a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('mycollection') }}"
                     class="relative after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-neutral-50">My
                     Collection</a>
             </li>
@@ -49,7 +49,7 @@
 
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                                                                    this.closest('form').submit();">
+                                                                                                        this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
