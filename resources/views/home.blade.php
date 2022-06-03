@@ -17,7 +17,7 @@
                     @endforeach
                 </ul>
                 <input type="submit" name="filter" value="Filter"
-                    class="border rounded px-2 my-3 bg-green text-neutral-50 hover:cursor-pointer" />
+                    class="border rounded px-2 my-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-900 text-neutral-50 hover:cursor-pointer" />
             </form>
         </aside>
         <main class="w-4/5">
@@ -37,7 +37,7 @@
                             <span class="text-amber-600">&euro; {{ $tea->price }}</span>
                             <a href="{{ '/details' }}/{{ $tea->id }}">
                                 <x-ri-arrow-right-s-line
-                                    class="h-7 w-7 text-green hover:cursor-pointer hover:translate-x-1" />
+                                    class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
                             </a>
                         </div>
                     </article>
