@@ -16,7 +16,8 @@
                         </li>
                     @endforeach
                 </ul>
-                <input type="submit" name="filter" value="filter" />
+                <input type="submit" name="filter" value="Filter"
+                    class="border rounded px-2 my-3 bg-green text-neutral-50 hover:cursor-pointer" />
             </form>
         </aside>
         <main class="w-4/5">
