@@ -34,4 +34,9 @@ class OverviewController extends Controller
 
         return view('teadetail', ['tea' => $tea]);
     }
+
+    public function showMyCollection()
+    {
+        return view('mycollection');
+    }
 }
