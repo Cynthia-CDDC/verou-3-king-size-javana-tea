@@ -44,6 +44,11 @@ class User extends Authenticatable
 
     public function usersTeas()
     {
-        return $this->belongsToMany(Tea::class)->withPivot('rating', 'favorite', 'review', 'to_tryout')->withTimestamps();
+        return $this->belongsToMany(Tea::class, 'collection_tea_user')->withTimestamps();
+    }
+
+    public function usersCollections()
+    {
+        return $this->belongsToMany(Collection::class, 'collection_tea_user')->withTimestamps();
     }
 }
