@@ -14,7 +14,8 @@ class OverviewController extends Controller
 {
     public function overviewTeas(Request $request)
     {
-       
+       $test = CollectionTeaUser::get();
+
         if ($request->characteristic) {
             $id = $request->characteristic;
             $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($id) {
@@ -24,8 +25,13 @@ class OverviewController extends Controller
             $teas = Tea::get();
         }
 
+        $teas = Tea::get();
+        $user = auth()->user();
+        $userId = $user->id;
+        // dump($teas->first()->teasCollections);
+        dump($teas->first()->teasCollections()->where('user_id', $user->id)->get());
         $characteristics = Characteristic::get();
-        
+
         return view('home', compact('teas', 'characteristics'));
     }
 
@@ -47,20 +53,15 @@ class OverviewController extends Controller
         $user = auth()->user();
         $userId = $user->id;
         $tea = Tea::find($teaId);
+        $userTea = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
 
-        
-        // dump($user, $userId, $tea, $teaId, $collectionId);
-        
-        // $test = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
-        // dump($test);
-        
         if(CollectionTeaUser::where('user_id','=',$userId)->where('tea_id','=',$teaId)->first())
         {
-            echo 'your already added';
-            
+
+            // return redirect()->back()->with('message', 'already exists!');
+
         } else {
             $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
-            dump($user);
         }
 
         // return redirect()->route('home');
