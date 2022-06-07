@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Tea;
 use App\Models\Collection;
 use App\Models\CollectionTeaUser;
+use App\Models\User;
 
 class OverviewController extends Controller
 {
@@ -46,14 +47,22 @@ class OverviewController extends Controller
         $user = auth()->user();
         $userId = $user->id;
         $tea = Tea::find($teaId);
-        
-        // dump($userId, $tea, $teaId, $collectionId);
-        
-        $test = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
-        dump($test->type);
 
-        $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
         
+        // dump($user, $userId, $tea, $teaId, $collectionId);
+        
+        // $test = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
+        // dump($test);
+        
+        if(CollectionTeaUser::where('user_id','=',$userId)->where('tea_id','=',$teaId)->first())
+        {
+            echo 'your already added';
+            
+        } else {
+            $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
+            dump($user);
+        }
+
         // return redirect()->route('home');
     }
 }
