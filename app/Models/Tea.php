@@ -11,9 +11,14 @@ class Tea extends Model
 
     public function teasUsers()
     {
-        return $this->belongsToMany(User::class)->withPivot('rating', 'favorite', 'review', 'to_tryout')->withTimestamps();
+        return $this->belongsToMany(User::class, 'colletion_tea_user')->withTimestamps();
     }
     
+    public function teasCollections()
+    {
+        return $this->belongsToMany(Collection::class, 'colletion_tea_user')->withTimestamps();
+    }
+
     public function teasCharacteristics()
     {
         return $this->belongsToMany(Characteristic::class)->withTimestamps();
