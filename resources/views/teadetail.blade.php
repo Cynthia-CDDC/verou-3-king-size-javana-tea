@@ -20,10 +20,12 @@
             </div>
             <div>
                 <img src="{{ asset('images/' . $tea->image) }}" alt="Picture of tea" class="w-72 h-72 order-1">
-                <a href="{{ route('saveLike', ['id' => $tea->id]) }}"
+                @foreach ($collections as $collection)
+                <a href="{{ route('saveLike', ['id' => $tea->id, 'collection_id' => $collection->id]) }}"
                     class="bg-emerald-600 text-neutral-50 rounded-md hover:cursor-pointer mt-2 px-2">
-                    Like
+                    {{$collection->type}}
                 </a>
+                @endforeach
             </div>
         </section>
     </main>
