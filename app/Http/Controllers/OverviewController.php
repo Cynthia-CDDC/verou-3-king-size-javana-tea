@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\Characteristic;
 use Illuminate\Http\Request;
 use App\Models\Tea;
+use App\Models\Collection;
+use App\Models\CollectionTeaUser;
 
 class OverviewController extends Controller
 {
     public function overviewTeas(Request $request)
     {
-        // dd($_GET);
-        // is there characteristic -> filter, otherwise not
+       
         if ($request->characteristic) {
             $id = $request->characteristic;
             $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($id) {
@@ -23,16 +24,16 @@ class OverviewController extends Controller
         }
 
         $characteristics = Characteristic::get();
-        // $test = $request->characteristic;
-        // dd($test);
+        
         return view('home', compact('teas', 'characteristics'));
     }
 
     public function detailsTea($id)
     {
         $tea = Tea::find($id);
-
-        return view('teadetail', ['tea' => $tea]);
+        $collections = Collection::get();
+        // dump($collections);
+        return view('teadetail', ['tea' => $tea, 'collections' => $collections]);
     }
 
     public function showMyCollection()
@@ -40,14 +41,23 @@ class OverviewController extends Controller
         return view('mycollection');
     }
 
-    public function saveLike($teaId)
+    public function saveLike($teaId, $collectionId)
     {
         $user = auth()->user();
+        $userId = $user->id;
         $tea = Tea::find($teaId);
-        dump($user, $tea);
+        
+        // dump($userId, $tea, $teaId, $collectionId);
+        
+        $test = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
+        dump($test->type);
 
-        // TODO: add save here to save to database (teaUser)
-
-        return redirect()->back();
+        $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
+        
+        // return redirect()->route('home');
     }
 }
+// TODO: Teadetail page: if userId and teaId combo exists: update, else: attach
+// TODO: My Collection page: show per type the teas of user with type buttons to change status
+// TODO: Home page: filter on multiple checkbox possibilities
+// TODO: database users table: email_verified and remember_token not used, why? (session, cookies)
