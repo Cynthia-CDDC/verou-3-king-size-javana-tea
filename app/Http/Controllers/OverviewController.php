@@ -15,6 +15,7 @@ class OverviewController extends Controller
     public function overviewTeas(Request $request)
     {
         $characteristics = Characteristic::get();
+        $test = CollectionTeaUser::get();
 
         if ($request->characteristic) {
             $id = $request->characteristic;
@@ -24,6 +25,13 @@ class OverviewController extends Controller
         } else {
             $teas = Tea::get();
         }
+
+        // $teas = Tea::get();
+        // $user = auth()->user();
+        // $userId = $user->id;
+        // // dump($teas->first()->teasCollections);
+        // dump($teas->first()->teasCollections()->where('user_id', $user->id)->get());
+        // $characteristics = Characteristic::get();
 
         return view('home', compact('teas', 'characteristics'));
     }
@@ -47,12 +55,7 @@ class OverviewController extends Controller
         $user = auth()->user();
         $userId = $user->id;
         $tea = Tea::find($teaId);
-
-
-        // dump($user, $userId, $tea, $teaId, $collectionId);
-
-        // $test = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
-        // dump($test);
+        $userTea = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
 
         if (CollectionTeaUser::where('user_id', '=', $userId)->where('tea_id', '=', $teaId)->first()) {
             return redirect()->back()->with('error', 'You already added this tea to your collection!');
@@ -61,7 +64,7 @@ class OverviewController extends Controller
             return redirect()->back();
         }
     }
+
+    // TODO: Home page: filter on multiple checkbox possibilities
+    // TODO: database users table: email_verified and remember_token not used, why? (session, cookies)
 }
-// TODO: My Collection page: show per type the teas of user with type buttons to change status
-// TODO: Home page: filter on multiple checkbox possibilities
-// TODO: database users table: email_verified and remember_token not used, why? (session, cookies)

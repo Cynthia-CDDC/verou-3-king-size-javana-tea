@@ -11,12 +11,12 @@ class Tea extends Model
 
     public function teasUsers()
     {
-        return $this->belongsToMany(User::class, 'colletion_tea_user')->withTimestamps();
+        return $this->belongsToMany(User::class, 'collection_tea_user')->withTimestamps();
     }
     
     public function teasCollections()
     {
-        return $this->belongsToMany(Collection::class, 'colletion_tea_user')->withTimestamps();
+        return $this->belongsToMany(Collection::class, 'collection_tea_user')->withTimestamps();
     }
 
     public function teasCharacteristics()

@@ -31,6 +31,7 @@
                         {{ $collection->type }}
                     </a>
                 @endforeach
+
             </div>
         </section>
     </main>
