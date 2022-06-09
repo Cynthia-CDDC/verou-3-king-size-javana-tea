@@ -47,9 +47,36 @@ class OverviewController extends Controller
     }
 
     public function showMyCollection()
-    {
+    {   
+        $user = auth()->user();
+        $userId = $user->id;
         $collections = Collection::get();
-        return view('mycollection', compact('collections'));
+        // $test = Collection::where(['user_id' => $userId])->get();
+        // dump($test);
+
+        $teas = Tea::with(['teasCollections' => function ($query) {
+                $query->where('user_id', auth()->user()->id);
+        }])->get();
+        dump($teas);
+        
+
+        
+// switch ($test) {
+// 	case 'favourites':
+//         echo "Age is 18";
+//         break;
+//     case 'like':
+//         echo "Age is 20";
+//         break;
+//     case 'dislike':
+//         echo "Age is 21";
+//         break;
+//     case 'want to try':
+//         echo "Age is 22";
+//         break;
+// }
+
+        return view('mycollection', compact('collections', 'teas'));
     }
 
     public function saveLike($teaId, $collectionId)
