@@ -20,23 +20,22 @@ class OverviewController extends Controller
             $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($characteristic) {
                 $query->where('characteristic_id', $characteristic);
             })
-            ->with(['teasCollections' => function($query) {
-                if(auth()->check()) {
-                    $query->where('user_id', auth()->user()->id);
-                }
-            }])
-            ->get();
+                ->with(['teasCollections' => function ($query) {
+                    if (auth()->check()) {
+                        $query->where('user_id', auth()->user()->id);
+                    }
+                }])
+                ->get();
         } else {
-            $teas = Tea::with(['teasCollections' => function($query) {
-                if(auth()->check()) {
+            $teas = Tea::with(['teasCollections' => function ($query) {
+                if (auth()->check()) {
                     $query->where('user_id', auth()->user()->id);
                 }
-
             }])->get();
 
-        $characteristics = Characteristic::get();
+            $characteristics = Characteristic::get();
 
-        return view('home', compact('teas', 'characteristics'));
+            return view('home', compact('teas', 'characteristics'));
         }
     }
 
@@ -62,10 +61,10 @@ class OverviewController extends Controller
 
         if ($userTea->isNotEmpty()) {
             CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->update(['collection_id' => $collectionId]);
-            return redirect()->back();
+            return redirect()->back()->with('success', 'You successfully changed the collection type');
         } else {
             $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
-            return redirect()->back();
+            return redirect()->back()->with('success', 'You successfully added this tea to your collection');
         }
     }
 }

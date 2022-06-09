@@ -2,9 +2,9 @@
 
 @section('content')
     <main class="flex flex-col justify-center items-center">
-        @if (session()->has('error'))
-            <div class="bg-red text-neutral-50 p-5 w-full my-3 text-center">
-                {{ session()->get('error') }}
+        @if (session()->has('success'))
+            <div class="bg-emerald-600 text-neutral-50 p-5 w-full my-3 text-center">
+                {{ session()->get('success') }}
             </div>
         @endif
         <section class="flex flex-col sm:flex-row justify-center w-4/5 py-5">
