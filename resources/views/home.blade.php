@@ -1,14 +1,14 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="flex p-5 justify-between">
-        <aside class="w-1/6">
+    <div class="flex p-5 flex-col sm:flex-row sm:justify-between">
+        <aside class="sm:w-1/6">
             <form action="" method="get">
                 @csrf
                 <h2 class="pb-2 border-b border-orange-800 text-orange-800 font-bold">Characteristics</h2>
-                <ul class="pt-2">
+                <ul class="pt-2 flex flex-wrap sm:flex-nowrap sm:flex-col">
                     @foreach ($characteristics as $characteristic)
-                        <li class="flex items-center gap-3 hover:cursor-pointer">
+                        <li class="flex items-center gap-1 sm:gap-3 hover:cursor-pointer mr-3">
                             <input type="checkbox" id="{{ $characteristic->name }}" name="characteristic"
                                 value="{{ $characteristic->id }}" class="hover:cursor-pointer">
                             <label for="{{ $characteristic->name }}"
@@ -21,7 +21,7 @@
             </form>
         </aside>
         <main class="w-4/5">
-            <section class="flex flex-wrap justify-end gap-10 p-2">
+            <section class="flex flex-wrap sm:justify-center lg:justify-end md:gap-10 p-2">
                 @foreach ($teas as $tea)
                     <article>
                         <div class="overflow-hidden">
@@ -30,9 +30,17 @@
                                     class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                             </a>
                         </div>
-                        <h2 class="text-red font-bold">
-                            {{ $tea->name }}
-                        </h2>
+                        <div class="flex justify-between mt-2">
+                            <h2 class="text-red font-bold">
+                                {{ $tea->name }}
+                            </h2>
+                            @if (auth()->check() && $tea->teasCollections->isNotEmpty())
+                                @foreach ($tea->teasCollections as $collection)
+                                    <span
+                                        class="bg-emerald-600 text-neutral-50 rounded-md px-2">{{ $collection->type }}</span>
+                                @endforeach
+                            @endif
+                        </div>
                         <div class="flex justify-between items-center">
                             <span class="text-amber-600">&euro; {{ $tea->price }}</span>
                             <a href="{{ '/details' }}/{{ $tea->id }}">
@@ -40,14 +48,6 @@
                                     class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
                             </a>
                         </div>
-
-                        @if(auth()->check() && $tea->teasCollections->isNotEmpty())
-                        <ul>
-                            @foreach($tea->teasCollections as $collection)
-                                <li>{{ $collection->type }}</li>
-                            @endforeach
-                        </ul>
-                        @endif
                     </article>
                 @endforeach
             </section>

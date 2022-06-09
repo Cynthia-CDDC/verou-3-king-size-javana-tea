@@ -7,8 +7,8 @@
                 {{ session()->get('error') }}
             </div>
         @endif
-        <section class="flex justify-center w-4/5 py-5">
-            <div class="order-2 mx-5 w-3/5">
+        <section class="flex flex-col sm:flex-row justify-center w-4/5 py-5">
+            <div class="order-2 sm:mx-5 sm:w-3/5">
                 <h1 class="text-red font-bold">{{ $tea->name }}</h1>
                 <p class="text-emerald-800">
                     Type:
