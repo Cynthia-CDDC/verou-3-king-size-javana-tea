@@ -39,3 +39,7 @@ In order to not loose too much time with logging in/registering we choose Larave
 -   Support for back-end where necessary
 
 Ofcourse everything we did was discussed together to check if we both agreed with features etc.
+
+## Communication
+
+Ofcourse we know that communication is key! We stayed in contact with eachother the whole time via Discord and agreed on coming together each morning and afternoon to brief eachother on what we did and wanted to do for that day.
