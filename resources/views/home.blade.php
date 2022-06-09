@@ -40,6 +40,12 @@
                                     class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
                             </a>
                         </div>
+
+                        <ul>
+                            @foreach($tea->teasCollections()->where('user_id', auth()->user()->id)->get() as $collection)
+                                <li>{{ $collection->type }}</li>
+                            @endforeach
+                        </ul>
                     </article>
                 @endforeach
             </section>
