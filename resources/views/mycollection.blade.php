@@ -2,7 +2,7 @@
 
 @section('content')
     <main class="flex flex-col">
-        <section class="flex flex-col justify-start w-4/5 mx-auto py-5">
+        <section class="flex flex-col justify-start w-4/5 mx-auto py-5 border-b border-orange-300">
             <h1 class="text-red font-bold text-2xl">My Collection</h1>
             <p class="mb-2">Welcome to your collection, {{ auth()->user()->name }}!</p>
             <h2 class="bg-emerald-600 text-neutral-50 rounded-md mb-2 px-2 w-max">
@@ -33,7 +33,7 @@
                 @endforeach
             </div>
         </section>
-        <section class="flex flex-col justify-start w-4/5 mx-auto py-5">
+        <section class="flex flex-col justify-start w-4/5 mx-auto py-5 border-b border-orange-300">
             <h2 class="bg-emerald-600 text-neutral-50 rounded-md mb-2 px-2 w-max">
                 Like
             </h2>
@@ -62,7 +62,7 @@
                 @endforeach
             </div>
         </section>
-        <section class="flex flex-col justify-start w-4/5 mx-auto py-5">
+        <section class="flex flex-col justify-start w-4/5 mx-auto py-5 border-b border-orange-300">
             <h2 class="bg-emerald-600 text-neutral-50 rounded-md mb-2 px-2 w-max">
                 Dislike
             </h2>
@@ -91,7 +91,7 @@
                 @endforeach
             </div>
         </section>
-        <section class="flex flex-col justify-start w-4/5 mx-auto py-5">
+        <section class="flex flex-col justify-start w-4/5 mx-auto py-5 border-b border-orange-300 mb-2">
             <h2 class="bg-emerald-600 text-neutral-50 rounded-md mb-2 px-2 w-max">
                 Want to try
             </h2>
