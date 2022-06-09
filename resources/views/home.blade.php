@@ -1,14 +1,14 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="flex p-5 justify-between">
-        <aside class="w-1/6">
+    <div class="flex p-5 flex-col sm:flex-row sm:justify-between">
+        <aside class="sm:w-1/6">
             <form action="" method="get">
                 @csrf
                 <h2 class="pb-2 border-b border-orange-800 text-orange-800 font-bold">Characteristics</h2>
-                <ul class="pt-2">
+                <ul class="pt-2 flex flex-wrap sm:flex-nowrap sm:flex-col">
                     @foreach ($characteristics as $characteristic)
-                        <li class="flex items-center gap-3 hover:cursor-pointer">
+                        <li class="flex items-center gap-1 sm:gap-3 hover:cursor-pointer mr-3">
                             <input type="checkbox" id="{{ $characteristic->name }}" name="characteristic"
                                 value="{{ $characteristic->id }}" class="hover:cursor-pointer">
                             <label for="{{ $characteristic->name }}"
@@ -21,7 +21,7 @@
             </form>
         </aside>
         <main class="w-4/5">
-            <section class="flex flex-wrap justify-end gap-10 p-2">
+            <section class="flex flex-wrap sm:justify-center lg:justify-end md:gap-10 p-2">
                 @foreach ($teas as $tea)
                     <article>
                         <div class="overflow-hidden">
