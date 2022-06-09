@@ -51,32 +51,24 @@ class OverviewController extends Controller
         $user = auth()->user();
         $userId = $user->id;
         $collections = Collection::get();
-        // $test = Collection::where(['user_id' => $userId])->get();
-        // dump($test);
 
-        $teas = Tea::with(['teasCollections' => function ($query) {
-                $query->where('user_id', auth()->user()->id);
-        }])->get();
-        dump($teas);
-        
+        $favourites = Tea::whereHas('teasCollections', function ($query) {
+            $query->where('user_id', auth()->user()->id)->where('collection_id', 1);
+        })->get();
 
-        
-// switch ($test) {
-// 	case 'favourites':
-//         echo "Age is 18";
-//         break;
-//     case 'like':
-//         echo "Age is 20";
-//         break;
-//     case 'dislike':
-//         echo "Age is 21";
-//         break;
-//     case 'want to try':
-//         echo "Age is 22";
-//         break;
-// }
+        $like = Tea::whereHas('teasCollections', function ($query) {
+            $query->where('user_id', auth()->user()->id)->where('collection_id', 2);
+        })->get();
 
-        return view('mycollection', compact('collections', 'teas'));
+        $dislike = Tea::whereHas('teasCollections', function ($query) {
+            $query->where('user_id', auth()->user()->id)->where('collection_id', 3);
+        })->get();
+
+        $wantToTry= Tea::whereHas('teasCollections', function ($query) {
+            $query->where('user_id', auth()->user()->id)->where('collection_id', 4);
+        })->get();
+
+        return view('mycollection', compact('collections', 'favourites', 'like', 'dislike', 'wantToTry'));
     }
 
     public function saveLike($teaId, $collectionId)
@@ -95,7 +87,6 @@ class OverviewController extends Controller
         }
     }
 }
-// TODO: My Collection page: show per type the teas of user with type buttons to change status
 // TODO: Create delete for teas in Mycollection page
 // TODO: Home page: filter on multiple checkbox possibilities, use [] ?
 // TODO: database users table: email_verified and remember_token not used, why? (session, cookies)
