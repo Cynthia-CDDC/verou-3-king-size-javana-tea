@@ -80,17 +80,20 @@ class OverviewController extends Controller
 
     public function saveLike($teaId, $collectionId)
     {
-        $user = auth()->user();
-        $userId = $user->id;
-        $tea = Tea::find($teaId);
-        $userTea = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
+        if (auth()->check()) {
+            $user = auth()->user();
+            $userId = $user->id;
+            $userTea = CollectionTeaUser::where(['user_id' => $user->id, 'tea_id' => $teaId])->get();
 
-        if ($userTea->isNotEmpty()) {
-            CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->update(['collection_id' => $collectionId]);
-            return redirect()->back()->with('success', 'You successfully changed the collection type');
+            if ($userTea->isNotEmpty()) {
+                CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->update(['collection_id' => $collectionId]);
+                return redirect()->back()->with('success', 'You successfully changed the collection type');
+            } else {
+                $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
+                return redirect()->back()->with('success', 'You successfully added this tea to your collection');
+            }
         } else {
-            $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
-            return redirect()->back()->with('success', 'You successfully added this tea to your collection');
+            return redirect()->back()->with('error', 'Please log in or register to add to collection!');
         }
     }
 }
