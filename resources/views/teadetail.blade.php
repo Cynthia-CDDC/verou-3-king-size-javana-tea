@@ -1,13 +1,13 @@
 @extends('layouts.layout')
 
 @section('content')
-    <main class="py-5 flex justify-center">     
-        <section class="flex justify-center w-4/5">
-        @if(session()->has('message'))
-                <div class="alert alert-success">
-                    {{ session()->get('message') }}
-                </div>
-                @endif
+    <main class="flex flex-col justify-center items-center">
+        @if (session()->has('error'))
+            <div class="bg-red text-neutral-50 p-5 w-full my-3 text-center">
+                {{ session()->get('error') }}
+            </div>
+        @endif
+        <section class="flex justify-center w-4/5 py-5">
             <div class="order-2 mx-5 w-3/5">
                 <h1 class="text-red font-bold">{{ $tea->name }}</h1>
                 <p class="text-emerald-800">
@@ -25,13 +25,14 @@
             </div>
             <div>
                 <img src="{{ asset('images/' . $tea->image) }}" alt="Picture of tea" class="w-72 h-72 order-1">
-                @foreach ($collections as $collection)
-                <a href="{{ route('saveLike', ['id' => $tea->id, 'collection_id' => $collection->id]) }}"
-                    class="bg-emerald-600 text-neutral-50 rounded-md hover:cursor-pointer mt-2 px-2">
-                    {{$collection->type}}
-                </a>
-                @endforeach
-                
+                <div class="py flex gap-x-1">
+                    @foreach ($collections as $collection)
+                        <a href="{{ route('saveLike', ['id' => $tea->id, 'collection_id' => $collection->id]) }}"
+                            class="bg-emerald-600 text-neutral-50 rounded-md hover:cursor-pointer mt-2 px-2 hover:bg-emerald-700">
+                            {{ $collection->type }}
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </section>
     </main>

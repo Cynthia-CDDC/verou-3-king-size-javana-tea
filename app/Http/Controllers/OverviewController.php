@@ -44,7 +44,8 @@ class OverviewController extends Controller
 
     public function showMyCollection()
     {
-        return view('mycollection');
+        $collections = Collection::get();
+        return view('mycollection', compact('collections'));
     }
 
     public function saveLike($teaId, $collectionId)
@@ -54,17 +55,16 @@ class OverviewController extends Controller
         $tea = Tea::find($teaId);
         $userTea = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
 
-        if(CollectionTeaUser::where('user_id','=',$userId)->where('tea_id','=',$teaId)->first())
-        {
-
-            // return redirect()->back()->with('message', 'already exists!');
-
+        if (CollectionTeaUser::where('user_id', '=', $userId)->where('tea_id', '=', $teaId)->first()) {
+            return redirect()->back()->with('error', 'You already added this tea to your collection!');
         } else {
             $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
+            return redirect()->back();
         }
-
-        // return redirect()->route('home');
     }
+
+    // TODO: Home page: filter on multiple checkbox possibilities
+    // TODO: database users table: email_verified and remember_token not used, why? (session, cookies)
 }
 // TODO: Teadetail page: if userId and teaId combo exists: update, else: attach
 // TODO: My Collection page: show per type the teas of user with type buttons to change status
