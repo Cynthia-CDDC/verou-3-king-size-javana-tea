@@ -37,6 +37,7 @@ class OverviewController extends Controller
         $characteristics = Characteristic::get();
 
         return view('home', compact('teas', 'characteristics'));
+        }
     }
 
     public function detailsTea($id)
@@ -59,18 +60,16 @@ class OverviewController extends Controller
         $tea = Tea::find($teaId);
         $userTea = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
 
-        if (CollectionTeaUser::where('user_id', '=', $userId)->where('tea_id', '=', $teaId)->first()) {
-            return redirect()->back()->with('error', 'You already added this tea to your collection!');
+        if ($userTea->isNotEmpty()) {
+            CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->update(['collection_id' => $collectionId]);
+            return redirect()->back();
         } else {
             $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
             return redirect()->back();
         }
     }
-
-    // TODO: Home page: filter on multiple checkbox possibilities
-    // TODO: database users table: email_verified and remember_token not used, why? (session, cookies)
 }
-// TODO: Teadetail page: if userId and teaId combo exists: update, else: attach
 // TODO: My Collection page: show per type the teas of user with type buttons to change status
+// TODO: Create delete for teas in Mycollection page
 // TODO: Home page: filter on multiple checkbox possibilities, use [] ?
 // TODO: database users table: email_verified and remember_token not used, why? (session, cookies)
