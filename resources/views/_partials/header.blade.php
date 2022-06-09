@@ -8,22 +8,22 @@
         <ul class="flex mx-6 gap-3 text-neutral-50 font-bold">
             <li>
                 <a href="{{ route('home') }}"
-                    class="relative after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-neutral-50">Home</a>
+                    class="relative hover:text-emerald-600 after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-emerald-600">Home</a>
             </li>
             <li>
                 <a href="{{ route('mycollection') }}"
-                    class="relative after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-neutral-50">My
+                    class="relative hover:text-emerald-600 after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-emerald-600">My
                     Collection</a>
             </li>
             @guest
                 <li>
                     <a href="{{ route('login') }}"
-                        class="relative after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-neutral-50">Log
+                        class="relative hover:text-emerald-600 after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-emerald-600">Log
                         In</a>
                 </li>
                 <li>
                     <a href="{{ route('register') }}"
-                        class="relative after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-neutral-50 border-l-2 pl-3">Register
+                        class="relative hover:text-emerald-600 after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-emerald-600 border-l-2 pl-3">Register
                     </a>
                 </li>
             @endguest
@@ -33,7 +33,7 @@
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
-                                class="flex items-center font-bold text-neutral-50 hover:text-neutral-100 hover:border-neutral-300 focus:outline-none focus:text-neutral-50 focus:border-neutral-200 transition duration-150 ease-in-out">
+                                class="flex items-center font-bold text-neutral-50 hover:text-emerald-600 hover:border-neutral-300 focus:outline-none focus:text-neutral-50 focus:border-neutral-200 transition duration-150 ease-in-out">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ml-1">
@@ -54,7 +54,7 @@
 
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                                                                                                    this.closest('form').submit();">
+                                                                                                                                                    this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>

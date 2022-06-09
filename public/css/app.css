@@ -1366,6 +1366,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(245 245 245 / var(--tw-text-opacity));
 }
+.hover\:text-emerald-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(5 150 105 / var(--tw-text-opacity));
+}
 .after\:hover\:absolute:hover::after {
   content: var(--tw-content);
   position: absolute;
@@ -1394,6 +1398,11 @@ select {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity));
+}
+.after\:hover\:bg-emerald-600:hover::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 150 105 / var(--tw-bg-opacity));
 }
 .focus\:z-10:focus {
   z-index: 10;
