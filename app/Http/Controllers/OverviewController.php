@@ -20,23 +20,23 @@ class OverviewController extends Controller
             $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($characteristic) {
                 $query->where('characteristic_id', $characteristic);
             })
-            ->with(['teasCollections' => function($query) {
-                if(auth()->check()) {
-                    $query->where('user_id', auth()->user()->id);
-                }
-            }])
-            ->get();
+                ->with(['teasCollections' => function ($query) {
+                    if (auth()->check()) {
+                        $query->where('user_id', auth()->user()->id);
+                    }
+                }])
+                ->get();
         } else {
-            $teas = Tea::with(['teasCollections' => function($query) {
-                if(auth()->check()) {
+            $teas = Tea::with(['teasCollections' => function ($query) {
+                if (auth()->check()) {
                     $query->where('user_id', auth()->user()->id);
                 }
-
             }])->get();
 
-        $characteristics = Characteristic::get();
+            $characteristics = Characteristic::get();
 
-        return view('home', compact('teas', 'characteristics'));
+            return view('home', compact('teas', 'characteristics'));
+        }
     }
 
     public function detailsTea($id)
