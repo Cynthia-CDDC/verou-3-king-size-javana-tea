@@ -41,14 +41,9 @@
                             </a>
                         </div>
 
-                        @php
-                            // TODO: improve performance
-                            $teaCollections = $tea->teasCollections()->where('user_id', auth()->user()->id)->get();
-                        @endphp
-
-                        @if($teaCollections->isNotEmpty())
+                        @if(auth()->check() && $tea->teasCollections->isNotEmpty())
                         <ul>
-                            @foreach($teaCollections as $collection)
+                            @foreach($tea->teasCollections as $collection)
                                 <li>{{ $collection->type }}</li>
                             @endforeach
                         </ul>

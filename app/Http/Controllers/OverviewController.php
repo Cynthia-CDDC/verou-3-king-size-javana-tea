@@ -19,16 +19,20 @@ class OverviewController extends Controller
             $characteristic = $request->characteristic;
             $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($characteristic) {
                 $query->where('characteristic_id', $characteristic);
-            })->get();
+            })
+            ->with(['teasCollections' => function($query) {
+                if(auth()->check()) {
+                    $query->where('user_id', auth()->user()->id);
+                }
+            }])
+            ->get();
         } else {
-            $teas = Tea::get();
-        }
+            $teas = Tea::with(['teasCollections' => function($query) {
+                if(auth()->check()) {
+                    $query->where('user_id', auth()->user()->id);
+                }
 
-        if (Auth::check()) {
-            // TODO: check if still needed (we want to get tea collections for the user here
-        } else {
-            echo 'to see collection-types, log in first';
-        }
+            }])->get();
 
         $characteristics = Characteristic::get();
 
