@@ -15,6 +15,10 @@ class OverviewController extends Controller
 {
     public function overviewTeas(Request $request)
     {
+
+        // $myCheckboxes = $request->input('characteristic');
+
+
         if ($request->characteristic) {
             $characteristic = $request->characteristic;
             $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($characteristic) {
