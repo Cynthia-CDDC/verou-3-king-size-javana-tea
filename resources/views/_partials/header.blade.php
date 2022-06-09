@@ -21,6 +21,11 @@
                         class="relative after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-neutral-50">Log
                         In</a>
                 </li>
+                <li>
+                    <a href="{{ route('register') }}"
+                        class="relative after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-neutral-50 border-l-2 pl-3">Register
+                    </a>
+                </li>
             @endguest
             @auth
                 <!-- Settings Dropdown -->
@@ -49,7 +54,7 @@
 
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                                                                            this.closest('form').submit();">
+                                                                                                                                    this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
