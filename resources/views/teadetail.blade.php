@@ -25,13 +25,14 @@
             </div>
             <div>
                 <img src="{{ asset('images/' . $tea->image) }}" alt="Picture of tea" class="w-72 h-72 order-1">
-                @foreach ($collections as $collection)
-                    <a href="{{ route('saveLike', ['id' => $tea->id, 'collection_id' => $collection->id]) }}"
-                        class="bg-emerald-600 text-neutral-50 rounded-md hover:cursor-pointer mt-2 px-2">
-                        {{ $collection->type }}
-                    </a>
-                @endforeach
-
+                <div class="py flex gap-x-1">
+                    @foreach ($collections as $collection)
+                        <a href="{{ route('saveLike', ['id' => $tea->id, 'collection_id' => $collection->id]) }}"
+                            class="bg-emerald-600 text-neutral-50 rounded-md hover:cursor-pointer mt-2 px-2 hover:bg-emerald-700">
+                            {{ $collection->type }}
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </section>
     </main>
