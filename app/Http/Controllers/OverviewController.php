@@ -47,25 +47,32 @@ class OverviewController extends Controller
     }
 
     public function showMyCollection()
-    {   
-        $user = auth()->user();
-        $userId = $user->id;
+    {
         $collections = Collection::get();
 
+
         $favourites = Tea::whereHas('teasCollections', function ($query) {
-            $query->where('user_id', auth()->user()->id)->where('collection_id', 1);
+            if (auth()->check()) {
+                $query->where('user_id', auth()->user()->id)->where('collection_id', 1);
+            }
         })->get();
 
         $like = Tea::whereHas('teasCollections', function ($query) {
-            $query->where('user_id', auth()->user()->id)->where('collection_id', 2);
+            if (auth()->check()) {
+                $query->where('user_id', auth()->user()->id)->where('collection_id', 2);
+            }
         })->get();
 
         $dislike = Tea::whereHas('teasCollections', function ($query) {
-            $query->where('user_id', auth()->user()->id)->where('collection_id', 3);
+            if (auth()->check()) {
+                $query->where('user_id', auth()->user()->id)->where('collection_id', 3);
+            }
         })->get();
 
-        $wantToTry= Tea::whereHas('teasCollections', function ($query) {
-            $query->where('user_id', auth()->user()->id)->where('collection_id', 4);
+        $wantToTry = Tea::whereHas('teasCollections', function ($query) {
+            if (auth()->check()) {
+                $query->where('user_id', auth()->user()->id)->where('collection_id', 4);
+            }
         })->get();
 
         return view('mycollection', compact('collections', 'favourites', 'like', 'dislike', 'wantToTry'));
