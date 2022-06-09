@@ -40,6 +40,14 @@
                                     class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
                             </a>
                         </div>
+
+                        @if(auth()->check() && $tea->teasCollections->isNotEmpty())
+                        <ul>
+                            @foreach($tea->teasCollections as $collection)
+                                <li>{{ $collection->type }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
                     </article>
                 @endforeach
             </section>

@@ -9,29 +9,32 @@ use App\Models\Tea;
 use App\Models\Collection;
 use App\Models\CollectionTeaUser;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class OverviewController extends Controller
 {
     public function overviewTeas(Request $request)
     {
-        $characteristics = Characteristic::get();
-        $test = CollectionTeaUser::get();
-
         if ($request->characteristic) {
-            $id = $request->characteristic;
-            $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($id) {
-                $query->where('characteristic_id', $id);
-            })->get();
+            $characteristic = $request->characteristic;
+            $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($characteristic) {
+                $query->where('characteristic_id', $characteristic);
+            })
+            ->with(['teasCollections' => function($query) {
+                if(auth()->check()) {
+                    $query->where('user_id', auth()->user()->id);
+                }
+            }])
+            ->get();
         } else {
-            $teas = Tea::get();
-        }
+            $teas = Tea::with(['teasCollections' => function($query) {
+                if(auth()->check()) {
+                    $query->where('user_id', auth()->user()->id);
+                }
 
-        // $teas = Tea::get();
-        // $user = auth()->user();
-        // $userId = $user->id;
-        // // dump($teas->first()->teasCollections);
-        // dump($teas->first()->teasCollections()->where('user_id', $user->id)->get());
-        // $characteristics = Characteristic::get();
+            }])->get();
+
+        $characteristics = Characteristic::get();
 
         return view('home', compact('teas', 'characteristics'));
     }
@@ -40,7 +43,6 @@ class OverviewController extends Controller
     {
         $tea = Tea::find($id);
         $collections = Collection::get();
-        // dump($collections);
         return view('teadetail', ['tea' => $tea, 'collections' => $collections]);
     }
 
@@ -68,3 +70,7 @@ class OverviewController extends Controller
     // TODO: Home page: filter on multiple checkbox possibilities
     // TODO: database users table: email_verified and remember_token not used, why? (session, cookies)
 }
+// TODO: Teadetail page: if userId and teaId combo exists: update, else: attach
+// TODO: My Collection page: show per type the teas of user with type buttons to change status
+// TODO: Home page: filter on multiple checkbox possibilities, use [] ?
+// TODO: database users table: email_verified and remember_token not used, why? (session, cookies)
