@@ -66,7 +66,7 @@ class OverviewController extends Controller
         return view('mycollection', compact('collections', 'favourites', 'like', 'dislike', 'wantToTry'));
     }
 
-    public function saveLike($teaId, $collectionId)
+    public function saveCollectionType($teaId, $collectionId)
     {
         if (auth()->check()) {
             $user = auth()->user();

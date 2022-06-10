@@ -43,7 +43,7 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-amber-600">&euro; {{ $tea->price }}</span>
-                            <a href="{{ '/details' }}/{{ $tea->id }}">
+                            <a href="{{ route('details', ['id' => $tea->id]) }}">
                                 <x-ri-arrow-right-s-line
                                     class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
                             </a>
