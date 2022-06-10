@@ -1,8 +1,10 @@
 <header class="h-24 bg-orange-800 flex justify-between items-center">
     <div class="p-4 flex flex-col items-center">
-        <img src="/images/hot-tea-icons-download-free-png-and-vector-icons-unlimited-393433.png" alt="Tea leaves"
-            class="h-16 w-16">
-        <span class="text-leafgreen">Tea Leaf</span>
+        <a href="{{ route('home') }}">
+            <img src="/images/hot-tea-icons-download-free-png-and-vector-icons-unlimited-393433.png" alt="Tea leaves"
+                class="h-16 w-16">
+            <span class="text-leafgreen">Tea Leaf</span>
+        </a>
     </div>
     <nav class="flex">
         <ul class="flex mx-6 gap-3 text-neutral-50 font-bold">
@@ -54,7 +56,7 @@
 
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                                                                                                                    this.closest('form').submit();">
+                                                                                                                                                        this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
