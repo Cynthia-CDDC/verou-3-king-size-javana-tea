@@ -2,7 +2,7 @@
 
 @section('content')
     <main class="flex flex-col">
-        <section class="flex flex-col justify-start w-4/5 mx-auto">
+        <section class="flex flex-col items-center sm:items-start justify-start w-4/5 mx-auto">
             <h1 class="text-red font-bold text-2xl mt-2">My Collection</h1>
             @guest
                 <p>Please log in or register to see your collection!</p>
@@ -19,7 +19,7 @@
                                 <div class="overflow-hidden">
                                     <a href="{{ route('details', ['id' => $favourite->id]) }}">
                                         <img src="{{ asset('images/' . $favourite->image) }}"
-                                            alt="A photo of {{ $tea->name }} tea."
+                                            alt="A photo of {{ $favourite->name }} tea."
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
                                 </div>
@@ -50,7 +50,7 @@
                                 <div class="overflow-hidden">
                                     <a href="{{ route('details', ['id' => $like->id]) }}">
                                         <img src="{{ asset('images/' . $like->image) }}"
-                                            alt="A photo of {{ $tea->name }} tea."
+                                            alt="A photo of {{ $like->name }} tea."
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
                                 </div>
@@ -81,7 +81,7 @@
                                 <div class="overflow-hidden">
                                     <a href="{{ route('details', ['id' => $dislike->id]) }}">
                                         <img src="{{ asset('images/' . $dislike->image) }}"
-                                            alt="A photo of {{ $tea->name }} tea."
+                                            alt="A photo of {{ $dislike->name }} tea."
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
                                 </div>
@@ -112,7 +112,7 @@
                                 <div class="overflow-hidden">
                                     <a href="{{ route('details', ['id' => $wantToTry->id]) }}">
                                         <img src="{{ asset('images/' . $wantToTry->image) }}"
-                                            alt="A photo of {{ $tea->name }} tea."
+                                            alt="A photo of {{ $wantToTry->name }} tea."
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
                                 </div>
