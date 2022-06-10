@@ -9,7 +9,7 @@
                 <ul class="pt-2 flex flex-wrap sm:flex-nowrap sm:flex-col">
                     @foreach ($characteristics as $characteristic)
                         <li class="flex items-center gap-1 sm:gap-3 hover:cursor-pointer mr-3">
-                            <input type="checkbox" id="{{ $characteristic->name }}" name="characteristic"
+                            <input type="checkbox" id="{{ $characteristic->name }}" name="characteristic[]"
                                 value="{{ $characteristic->id }}" class="hover:cursor-pointer">
                             <label for="{{ $characteristic->name }}"
                                 class="hover:cursor-pointer">{{ $characteristic->name }}</label>

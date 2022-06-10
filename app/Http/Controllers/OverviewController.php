@@ -13,6 +13,10 @@ class OverviewController extends Controller
 {
     public function overviewTeas(Request $request)
     {
+
+        // $myCheckboxes = $request->input('characteristic');
+
+
         if ($request->characteristic) {
             $id = $request->characteristic;
 
