@@ -25,7 +25,7 @@
                 @foreach ($teas as $tea)
                     <article>
                         <div class="overflow-hidden">
-                            <a href="{{ '/details' }}/{{ $tea->id }}">
+                            <a href="{{ route('details', ['id' => $tea->id]) }}">
                                 <img src="{{ asset('images/' . $tea->image) }}" alt="photo natural rooibos"
                                     class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                             </a>
