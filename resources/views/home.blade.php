@@ -31,7 +31,7 @@
                             </a>
                         </div>
                         <div class="flex justify-between mt-2">
-                            <h2 class="text-red font-bold">
+                            <h2 class="text-red-800 font-bold">
                                 {{ $tea->name }}
                             </h2>
                             @if (auth()->check() && $tea->teasCollections->isNotEmpty())

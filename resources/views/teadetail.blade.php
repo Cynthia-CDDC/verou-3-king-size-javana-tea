@@ -8,13 +8,13 @@
             </div>
         @endif
         @if (session()->has('error'))
-            <div class="bg-red text-neutral-50 p-5 w-full my-3 text-center">
+            <div class="bg-red-800 text-neutral-50 p-5 w-full my-3 text-center">
                 {{ session()->get('error') }}
             </div>
         @endif
         <section class="flex flex-col items-center sm:flex-row justify-center w-4/5 py-5">
             <div class="order-2 sm:mx-5 sm:w-3/5">
-                <h1 class="text-red font-bold">{{ $tea->name }}</h1>
+                <h1 class="text-red-800 font-bold">{{ $tea->name }}</h1>
                 <p class="text-emerald-800">
                     Type:
                     <span class="text-black"><i>{{ $tea->type }}</i></span>
@@ -34,7 +34,7 @@
                 <div class="py flex gap-x-1">
                     @foreach ($collections as $collection)
                         <a href="{{ route('saveCollectionType', ['id' => $tea->id, 'collection_id' => $collection->id]) }}"
-                            class="bg-emerald-600 text-neutral-50 rounded-md hover:cursor-pointer mt-2 px-2 hover:bg-emerald-700">
+                            class="bg-emerald-600 text-neutral-50 rounded-md mt-2 px-2 hover:bg-emerald-700">
                             {{ $collection->type }}
                         </a>
                     @endforeach

@@ -3,7 +3,7 @@
 @section('content')
     <main class="flex flex-col">
         <section class="flex flex-col items-center sm:items-start justify-start w-4/5 mx-auto">
-            <h1 class="text-red font-bold text-2xl mt-2">My Collection</h1>
+            <h1 class="text-red-800 font-bold text-2xl mt-2">My Collection</h1>
             @guest
                 <p>Please log in or register to see your collection!</p>
             @endguest
@@ -24,16 +24,16 @@
                                     </a>
                                 </div>
                                 <div class="flex justify-between mt-2">
-                                    <h2 class="text-red font-bold">
+                                    <h2 class="text-red-800 font-bold">
                                         {{ $favourite->name }}
                                     </h2>
-                                    <a href="{{ route('deleteFromCollection', ['id' => $favourite->id]) }}">Delete</a>
+                                    <a href="{{ route('deleteFromCollection', ['id' => $favourite->id]) }}"
+                                        class="bg-red-800 text-neutral-50 rounded-md px-2 hover:bg-red-700">Delete</a>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $favourite->price }}</span>
                                     <a href="{{ route('details', ['id' => $favourite->id]) }}">
-                                        <x-ri-arrow-right-s-line
-                                            class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
+                                        <x-ri-arrow-right-s-line class="h-7 w-7 text-emerald-600 hover:translate-x-1" />
                                     </a>
                                 </div>
                             </article>
@@ -55,16 +55,16 @@
                                     </a>
                                 </div>
                                 <div class="flex justify-between mt-2">
-                                    <h2 class="text-red font-bold">
+                                    <h2 class="text-red-800 font-bold">
                                         {{ $like->name }}
                                     </h2>
-                                    <a href="{{ route('deleteFromCollection', ['id' => $like->id]) }}">Delete</a>
+                                    <a href="{{ route('deleteFromCollection', ['id' => $like->id]) }}"
+                                        class="bg-red-800 text-neutral-50 rounded-md px-2 hover:bg-red-700">Delete</a>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $like->price }}</span>
                                     <a href="{{ route('details', ['id' => $like->id]) }}">
-                                        <x-ri-arrow-right-s-line
-                                            class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
+                                        <x-ri-arrow-right-s-line class="h-7 w-7 text-emerald-600 hover:translate-x-1" />
                                     </a>
                                 </div>
                             </article>
@@ -86,16 +86,16 @@
                                     </a>
                                 </div>
                                 <div class="flex justify-between mt-2">
-                                    <h2 class="text-red font-bold">
+                                    <h2 class="text-red-800 font-bold">
                                         {{ $dislike->name }}
                                     </h2>
-                                    <a href="{{ route('deleteFromCollection', ['id' => $dislike->id]) }}">Delete</a>
+                                    <a href="{{ route('deleteFromCollection', ['id' => $dislike->id]) }}"
+                                        class="bg-red-800 text-neutral-50 rounded-md px-2 hover:bg-red-700">Delete</a>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $dislike->price }}</span>
                                     <a href="{{ route('details', ['id' => $dislike->id]) }}">
-                                        <x-ri-arrow-right-s-line
-                                            class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
+                                        <x-ri-arrow-right-s-line class="h-7 w-7 text-emerald-600 hover:translate-x-1" />
                                     </a>
                                 </div>
                             </article>
@@ -117,16 +117,16 @@
                                     </a>
                                 </div>
                                 <div class="flex justify-between mt-2">
-                                    <h2 class="text-red font-bold">
+                                    <h2 class="text-red-800 font-bold">
                                         {{ $wantToTry->name }}
                                     </h2>
-                                    <a href="{{ route('deleteFromCollection', ['id' => $wantToTry->id]) }}">Delete</a>
+                                    <a href="{{ route('deleteFromCollection', ['id' => $wantToTry->id]) }}"
+                                        class="bg-red-800 text-neutral-50 rounded-md px-2 hover:bg-red-700">Delete</a>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $wantToTry->price }}</span>
                                     <a href="{{ route('details', ['id' => $wantToTry->id]) }}">
-                                        <x-ri-arrow-right-s-line
-                                            class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
+                                        <x-ri-arrow-right-s-line class="h-7 w-7 text-emerald-600 hover:translate-x-1" />
                                     </a>
                                 </div>
                             </article>
