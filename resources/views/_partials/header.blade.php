@@ -1,5 +1,5 @@
-<header class="h-24 bg-orange-800 flex justify-between items-center">
-    <div class="p-4 flex flex-col items-center whitespace-nowrap">
+<header class="h-24 bg-orange-800 flex sm:justify-between items-center">
+    <div class="p-4 flex flex-col items-center">
         <a href="{{ route('home') }}">
             <img src="/images/hot-tea-icons-download-free-png-and-vector-icons-unlimited-393433.png" alt="Tea leaves"
                 class="h-16 w-16">
@@ -7,7 +7,7 @@
         </a>
     </div>
     <nav class="flex">
-        <ul class="flex whitespace-nowrap mx-6 gap-3 text-neutral-50 font-bold">
+        <ul class="flex sm:mx-6 gap-3 text-neutral-50 font-bold">
             <li>
                 <a href="{{ route('home') }}"
                     class="relative hover:text-emerald-600 after:hover:top-6 after:hover:left-1/2 after:hover:absolute after:hover:rounded-full after:hover:w-2 after:hover:h-2 after:hover:bg-emerald-600">Home</a>
@@ -56,7 +56,7 @@
 
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                                                                                                                                                                        this.closest('form').submit();">
+                                                                                                                                                                                                                                                            this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
