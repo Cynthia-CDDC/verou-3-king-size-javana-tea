@@ -26,7 +26,7 @@
                     <article>
                         <div class="overflow-hidden">
                             <a href="{{ route('details', ['id' => $tea->id]) }}">
-                                <img src="{{ asset('images/' . $tea->image) }}" alt="photo natural rooibos"
+                                <img src="{{ asset('images/' . $tea->image) }}" alt="A photo of {{ $tea->name }} tea."
                                     class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                             </a>
                         </div>
