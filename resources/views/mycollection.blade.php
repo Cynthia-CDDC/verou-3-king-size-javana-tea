@@ -18,7 +18,8 @@
                             <article class="w-max">
                                 <div class="overflow-hidden">
                                     <a href="{{ route('details', ['id' => $favourite->id]) }}">
-                                        <img src="{{ asset('images/' . $favourite->image) }}" alt="photo natural rooibos"
+                                        <img src="{{ asset('images/' . $favourite->image) }}"
+                                            alt="A photo of {{ $tea->name }} tea."
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
                                 </div>
@@ -48,7 +49,8 @@
                             <article class="w-max">
                                 <div class="overflow-hidden">
                                     <a href="{{ route('details', ['id' => $like->id]) }}">
-                                        <img src="{{ asset('images/' . $like->image) }}" alt="photo natural rooibos"
+                                        <img src="{{ asset('images/' . $like->image) }}"
+                                            alt="A photo of {{ $tea->name }} tea."
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
                                 </div>
@@ -78,7 +80,8 @@
                             <article class="w-max">
                                 <div class="overflow-hidden">
                                     <a href="{{ route('details', ['id' => $dislike->id]) }}">
-                                        <img src="{{ asset('images/' . $dislike->image) }}" alt="photo natural rooibos"
+                                        <img src="{{ asset('images/' . $dislike->image) }}"
+                                            alt="A photo of {{ $tea->name }} tea."
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
                                 </div>
@@ -108,7 +111,8 @@
                             <article class="w-max">
                                 <div class="overflow-hidden">
                                     <a href="{{ route('details', ['id' => $wantToTry->id]) }}">
-                                        <img src="{{ asset('images/' . $wantToTry->image) }}" alt="photo natural rooibos"
+                                        <img src="{{ asset('images/' . $wantToTry->image) }}"
+                                            alt="A photo of {{ $tea->name }} tea."
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
                                 </div>

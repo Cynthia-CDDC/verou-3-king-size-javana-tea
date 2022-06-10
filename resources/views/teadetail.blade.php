@@ -29,7 +29,8 @@
                 <p class="text-amber-600">&euro; {{ $tea->price }}</p>
             </div>
             <div>
-                <img src="{{ asset('images/' . $tea->image) }}" alt="Picture of tea" class="w-72 h-72 order-1">
+                <img src="{{ asset('images/' . $tea->image) }}" alt="A photo of {{ $tea->name }} tea."
+                    class="w-72 h-72 order-1">
                 <div class="py flex gap-x-1">
                     @foreach ($collections as $collection)
                         <a href="{{ route('saveCollectionType', ['id' => $tea->id, 'collection_id' => $collection->id]) }}"
