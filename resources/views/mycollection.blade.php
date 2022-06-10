@@ -17,7 +17,7 @@
                         @foreach ($favourites as $favourite)
                             <article class="w-max">
                                 <div class="overflow-hidden">
-                                    <a href="{{ '/details' }}/{{ $favourite->id }}">
+                                    <a href="{{ route('details', ['id' => $favourite->id]) }}">
                                         <img src="{{ asset('images/' . $favourite->image) }}" alt="photo natural rooibos"
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $favourite->price }}</span>
-                                    <a href="{{ '/details' }}/{{ $favourite->id }}">
+                                    <a href="{{ route('details', ['id' => $favourite->id]) }}">
                                         <x-ri-arrow-right-s-line
                                             class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
                                     </a>
@@ -47,7 +47,7 @@
                         @foreach ($like as $like)
                             <article class="w-max">
                                 <div class="overflow-hidden">
-                                    <a href="{{ '/details' }}/{{ $like->id }}">
+                                    <a href="{{ route('details', ['id' => $like->id]) }}">
                                         <img src="{{ asset('images/' . $like->image) }}" alt="photo natural rooibos"
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $like->price }}</span>
-                                    <a href="{{ '/details' }}/{{ $like->id }}">
+                                    <a href="{{ route('details', ['id' => $like->id]) }}">
                                         <x-ri-arrow-right-s-line
                                             class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
                                     </a>
@@ -77,7 +77,7 @@
                         @foreach ($dislike as $dislike)
                             <article class="w-max">
                                 <div class="overflow-hidden">
-                                    <a href="{{ '/details' }}/{{ $dislike->id }}">
+                                    <a href="{{ route('details', ['id' => $dislike->id]) }}">
                                         <img src="{{ asset('images/' . $dislike->image) }}" alt="photo natural rooibos"
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $dislike->price }}</span>
-                                    <a href="{{ '/details' }}/{{ $dislike->id }}">
+                                    <a href="{{ route('details', ['id' => $dislike->id]) }}">
                                         <x-ri-arrow-right-s-line
                                             class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
                                     </a>
@@ -107,7 +107,7 @@
                         @foreach ($wantToTry as $wantToTry)
                             <article class="w-max">
                                 <div class="overflow-hidden">
-                                    <a href="{{ '/details' }}/{{ $wantToTry->id }}">
+                                    <a href="{{ route('details', ['id' => $wantToTry->id]) }}">
                                         <img src="{{ asset('images/' . $wantToTry->image) }}" alt="photo natural rooibos"
                                             class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                                     </a>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $wantToTry->price }}</span>
-                                    <a href="{{ '/details' }}/{{ $wantToTry->id }}">
+                                    <a href="{{ route('details', ['id' => $wantToTry->id]) }}">
                                         <x-ri-arrow-right-s-line
                                             class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
                                     </a>
