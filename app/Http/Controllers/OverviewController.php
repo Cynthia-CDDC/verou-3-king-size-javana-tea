@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\Tea;
 use App\Models\Collection;
 use App\Models\CollectionTeaUser;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class OverviewController extends Controller
 {
@@ -87,6 +85,3 @@ class OverviewController extends Controller
         }
     }
 }
-// TODO: Create delete for teas in Mycollection page
-// TODO: Home page: filter on multiple checkbox possibilities, use [] ?
-// TODO: database users table: email_verified and remember_token not used, why? (session, cookies)
