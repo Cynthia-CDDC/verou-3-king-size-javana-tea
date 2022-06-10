@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\Tea;
 use App\Models\Collection;
 use App\Models\CollectionTeaUser;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class OverviewController extends Controller
 {
@@ -20,27 +18,17 @@ class OverviewController extends Controller
 
 
         if ($request->characteristic) {
-            $characteristic = $request->characteristic;
-            $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($characteristic) {
-                $query->where('characteristic_id', $characteristic);
-            })
-                ->with(['teasCollections' => function ($query) {
-                    if (auth()->check()) {
-                        $query->where('user_id', auth()->user()->id);
-                    }
-                }])
-                ->get();
+            $id = $request->characteristic;
+
+            $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($id) {
+                $query->where('characteristic_id', $id);
+            })->get();
         } else {
-            $teas = Tea::with(['teasCollections' => function ($query) {
-                if (auth()->check()) {
-                    $query->where('user_id', auth()->user()->id);
-                }
-            }])->get();
-
-            $characteristics = Characteristic::get();
-
-            return view('home', compact('teas', 'characteristics'));
+            $teas = Tea::get();
         }
+        $characteristics = Characteristic::get();
+
+        return view('home', compact('teas', 'characteristics'));
     }
 
     public function detailsTea($id)
@@ -51,46 +39,67 @@ class OverviewController extends Controller
     }
 
     public function showMyCollection()
-    {   
-        $user = auth()->user();
-        $userId = $user->id;
+    {
         $collections = Collection::get();
 
+
         $favourites = Tea::whereHas('teasCollections', function ($query) {
-            $query->where('user_id', auth()->user()->id)->where('collection_id', 1);
+            if (auth()->check()) {
+                $query->where('user_id', auth()->user()->id)->where('collection_id', 1);
+            }
         })->get();
 
         $like = Tea::whereHas('teasCollections', function ($query) {
-            $query->where('user_id', auth()->user()->id)->where('collection_id', 2);
+            if (auth()->check()) {
+                $query->where('user_id', auth()->user()->id)->where('collection_id', 2);
+            }
         })->get();
 
         $dislike = Tea::whereHas('teasCollections', function ($query) {
-            $query->where('user_id', auth()->user()->id)->where('collection_id', 3);
+            if (auth()->check()) {
+                $query->where('user_id', auth()->user()->id)->where('collection_id', 3);
+            }
         })->get();
 
-        $wantToTry= Tea::whereHas('teasCollections', function ($query) {
-            $query->where('user_id', auth()->user()->id)->where('collection_id', 4);
+        $wantToTry = Tea::whereHas('teasCollections', function ($query) {
+            if (auth()->check()) {
+                $query->where('user_id', auth()->user()->id)->where('collection_id', 4);
+            }
         })->get();
 
         return view('mycollection', compact('collections', 'favourites', 'like', 'dislike', 'wantToTry'));
     }
 
-    public function saveLike($teaId, $collectionId)
+    public function saveCollectionType($teaId, $collectionId)
     {
-        $user = auth()->user();
-        $userId = $user->id;
-        $tea = Tea::find($teaId);
-        $userTea = CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->get();
+        if (auth()->check()) {
+            $user = auth()->user();
+            $userId = $user->id;
+            $userTea = CollectionTeaUser::where(['user_id' => $user->id, 'tea_id' => $teaId])->get();
 
-        if ($userTea->isNotEmpty()) {
-            CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->update(['collection_id' => $collectionId]);
-            return redirect()->back()->with('success', 'You successfully changed the collection type');
+            if ($userTea->isNotEmpty()) {
+                CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->update(['collection_id' => $collectionId]);
+                return redirect()->back()->with('success', 'You successfully changed the collection type!');
+            } else {
+                $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
+                return redirect()->back()->with('success', 'You successfully added this tea to your collection!');
+            }
         } else {
-            $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
-            return redirect()->back()->with('success', 'You successfully added this tea to your collection');
+            return redirect()->back()->with('error', 'Please log in or register to add to collection!');
+        }
+    }
+
+    public function deleteFromCollection($teaId)
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+            $userId = $user->id;
+            $userTea = CollectionTeaUser::where(['user_id' => $user->id, 'tea_id' => $teaId])->get();
+
+            if ($userTea->isNotEmpty()) {
+                CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->delete();
+                return redirect()->back()->with('success', 'You successfully deleted the tea from your collection!');
+            }
         }
     }
 }
-// TODO: Create delete for teas in Mycollection page
-// TODO: Home page: filter on multiple checkbox possibilities, use [] ?
-// TODO: database users table: email_verified and remember_token not used, why? (session, cookies)

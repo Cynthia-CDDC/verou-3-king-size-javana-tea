@@ -23,6 +23,7 @@ Route::get('/dashboard', function () {
 Route::get('/details/{id}', [OverviewController::class, 'detailsTea'])->name('details');
 
 Route::get('/mycollection', [OverviewController::class, 'showMyCollection'])->name('mycollection');
-Route::get('/like-tea/{id}{collection_id}', [OverviewController::class, 'saveLike'])->name('saveLike');
+Route::get('/save-to-collection/{id}/{collection_id}', [OverviewController::class, 'saveCollectionType'])->name('saveCollectionType');
+Route::get('/delete-from-collection/{id}', [OverviewController::class, 'deleteFromCollection'])->name('deleteFromCollection');
 
 require __DIR__ . '/auth.php';

@@ -20,18 +20,18 @@
                     class="border rounded px-2 my-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-900 text-neutral-50 hover:cursor-pointer" />
             </form>
         </aside>
-        <main class="w-4/5">
-            <section class="flex flex-wrap sm:justify-center lg:justify-end md:gap-10 p-2">
+        <main class="w-4/5 mx-auto">
+            <section class="flex flex-wrap justify-center md:justify-end gap-10 p-2">
                 @foreach ($teas as $tea)
                     <article>
                         <div class="overflow-hidden">
-                            <a href="{{ '/details' }}/{{ $tea->id }}">
-                                <img src="{{ asset('images/' . $tea->image) }}" alt="photo natural rooibos"
+                            <a href="{{ route('details', ['id' => $tea->id]) }}">
+                                <img src="{{ asset('images/' . $tea->image) }}" alt="A photo of {{ $tea->name }} tea."
                                     class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
                             </a>
                         </div>
                         <div class="flex justify-between mt-2">
-                            <h2 class="text-red font-bold">
+                            <h2 class="text-red-800 font-bold">
                                 {{ $tea->name }}
                             </h2>
                             @if (auth()->check() && $tea->teasCollections->isNotEmpty())
@@ -43,9 +43,8 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-amber-600">&euro; {{ $tea->price }}</span>
-                            <a href="{{ '/details' }}/{{ $tea->id }}">
-                                <x-ri-arrow-right-s-line
-                                    class="h-7 w-7 text-emerald-600 hover:cursor-pointer hover:translate-x-1" />
+                            <a href="{{ route('details', ['id' => $tea->id]) }}">
+                                <x-ri-arrow-right-s-line class="h-7 w-7 text-emerald-600 hover:translate-x-1" />
                             </a>
                         </div>
                     </article>

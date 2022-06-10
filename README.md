@@ -21,6 +21,8 @@ For the front-end we use the Blade templates and for the styling we opt for Tail
 
 In order to not loose too much time with logging in/registering we choose Laravel Breeze.
 
+For icons we choose something that's called Blade Icons - Blade UI kit. It makes use of SVG's and a huge library of icons to implement in your laravel project.
+
 ## Role division
 
 [Cynthia Decelle](https://github.com/Cynthia-CDDC) mainly did the back-end:
