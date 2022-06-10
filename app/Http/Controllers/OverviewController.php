@@ -16,27 +16,17 @@ class OverviewController extends Controller
     public function overviewTeas(Request $request)
     {
         if ($request->characteristic) {
-            $characteristic = $request->characteristic;
-            $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($characteristic) {
-                $query->where('characteristic_id', $characteristic);
-            })
-                ->with(['teasCollections' => function ($query) {
-                    if (auth()->check()) {
-                        $query->where('user_id', auth()->user()->id);
-                    }
-                }])
-                ->get();
+            $id = $request->characteristic;
+
+            $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($id) {
+                $query->where('characteristic_id', $id);
+            })->get();
         } else {
-            $teas = Tea::with(['teasCollections' => function ($query) {
-                if (auth()->check()) {
-                    $query->where('user_id', auth()->user()->id);
-                }
-            }])->get();
-
-            $characteristics = Characteristic::get();
-
-            return view('home', compact('teas', 'characteristics'));
+            $teas = Tea::get();
         }
+        $characteristics = Characteristic::get();
+
+        return view('home', compact('teas', 'characteristics'));
     }
 
     public function detailsTea($id)
@@ -87,10 +77,10 @@ class OverviewController extends Controller
 
             if ($userTea->isNotEmpty()) {
                 CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->update(['collection_id' => $collectionId]);
-                return redirect()->back()->with('success', 'You successfully changed the collection type');
+                return redirect()->back()->with('success', 'You successfully changed the collection type!');
             } else {
                 $user->usersTeas()->attach($teaId, ['collection_id' => $collectionId]);
-                return redirect()->back()->with('success', 'You successfully added this tea to your collection');
+                return redirect()->back()->with('success', 'You successfully added this tea to your collection!');
             }
         } else {
             return redirect()->back()->with('error', 'Please log in or register to add to collection!');
