@@ -84,4 +84,18 @@ class OverviewController extends Controller
             return redirect()->back()->with('error', 'Please log in or register to add to collection!');
         }
     }
+
+    public function deleteFromCollection($teaId)
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+            $userId = $user->id;
+            $userTea = CollectionTeaUser::where(['user_id' => $user->id, 'tea_id' => $teaId])->get();
+
+            if ($userTea->isNotEmpty()) {
+                CollectionTeaUser::where(['user_id' => $userId, 'tea_id' => $teaId])->delete();
+                return redirect()->back()->with('success', 'You successfully deleted the tea from your collection!');
+            }
+        }
+    }
 }

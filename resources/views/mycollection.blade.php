@@ -26,6 +26,7 @@
                                     <h2 class="text-red font-bold">
                                         {{ $favourite->name }}
                                     </h2>
+                                    <a href="{{ route('deleteFromCollection', ['id' => $favourite->id]) }}">Delete</a>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $favourite->price }}</span>
@@ -55,6 +56,7 @@
                                     <h2 class="text-red font-bold">
                                         {{ $like->name }}
                                     </h2>
+                                    <a href="{{ route('deleteFromCollection', ['id' => $like->id]) }}">Delete</a>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $like->price }}</span>
@@ -84,6 +86,7 @@
                                     <h2 class="text-red font-bold">
                                         {{ $dislike->name }}
                                     </h2>
+                                    <a href="{{ route('deleteFromCollection', ['id' => $dislike->id]) }}">Delete</a>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $dislike->price }}</span>
@@ -113,6 +116,7 @@
                                     <h2 class="text-red font-bold">
                                         {{ $wantToTry->name }}
                                     </h2>
+                                    <a href="{{ route('deleteFromCollection', ['id' => $wantToTry->id]) }}">Delete</a>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-amber-600">&euro; {{ $wantToTry->price }}</span>
