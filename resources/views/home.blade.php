@@ -20,8 +20,8 @@
                     class="border rounded px-2 my-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-900 text-neutral-50 hover:cursor-pointer" />
             </form>
         </aside>
-        <main class="w-4/5">
-            <section class="flex flex-wrap sm:justify-center lg:justify-end md:gap-10 p-2">
+        <main class="w-4/5 mx-auto">
+            <section class="flex flex-wrap justify-center md:justify-end gap-10 p-2">
                 @foreach ($teas as $tea)
                     <article>
                         <div class="overflow-hidden">
