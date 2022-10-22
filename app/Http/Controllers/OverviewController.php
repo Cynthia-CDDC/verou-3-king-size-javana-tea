@@ -1,5 +1,9 @@
 <?php
-
+/*
+        echo '<pre>';
+        dump();
+        echo '</pre>';
+*/
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -13,21 +17,41 @@ class OverviewController extends Controller
 {
     public function overviewTeas(Request $request)
     {
-
         // $myCheckboxes = $request->input('characteristic');
 
+        if (auth()->check()) {
+            $user = auth()->user();
+            $userId = $user->id;
 
-        if ($request->characteristic) {
+            if ($request->characteristic) {
+                $id = $request->characteristic;
+    
+                $teas = Tea::whereHas('teasCharacteristics', function ($query) use ($id) {
+                    $query->where('characteristic_id', $id);
+                })->get();
+                }
+                else {
+                    $teas = Tea::get();
+                }
+
+                $characteristics = Characteristic::get();
+                
+            return view('home', compact('userId', 'teas', 'characteristics'));
+        } 
+        else {
+            if ($request->characteristic) {
             $id = $request->characteristic;
 
-            $teas = Tea::whereHas('teasCharacteristics', function (Builder $query) use ($id) {
+            $teas = Tea::whereHas('teasCharacteristics', function ($query) use ($id) {
                 $query->where('characteristic_id', $id);
             })->get();
-        } else {
-            $teas = Tea::get();
+            }
+            else {
+                $teas = Tea::get();
+            }
+            $characteristics = Characteristic::get();
+            return view('home', compact('teas', 'characteristics'));
         }
-        $characteristics = Characteristic::get();
-
         return view('home', compact('teas', 'characteristics'));
     }
 

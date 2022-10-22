@@ -11,11 +11,11 @@ class Collection extends Model
 
     public function collectionUsers()
     {
-        return $this->belongsToMany(User::class, 'colletion_tea_user')->withTimestamps();
+        return $this->belongsToMany(User::class, 'collection_tea_user')->withTimestamps();
     }
     
     public function collectionTeas()
     {
-        return $this->belongsToMany(Tea::class, 'colletion_tea_user')->withTimestamps();
+        return $this->belongsToMany(Tea::class, 'collection_tea_user')->withTimestamps();
     }
 }
