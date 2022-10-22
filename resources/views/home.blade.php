@@ -22,13 +22,17 @@
         </aside>
         <main class="w-4/5 mx-auto">
             <section class="flex flex-wrap justify-center md:justify-end gap-10 p-2">
-            @foreach ($teas as $tea)
-            <?php
-                $teaId = $tea->id;
-                $collection = \App\Models\Collection::wherehas('collectionUsers', function ($query) use ($userId, $teaId) {
-                    $query->where('user_id', $userId)->where('tea_id', $teaId);
-                })->get();
-            ?>
+                @foreach ($teas as $tea)
+                <?php
+                    $teaId = $tea->id;
+                    if (auth()->check()) {
+                        $user = auth()->user();
+                        $userId = $user->id;
+                        $collection = \App\Models\Collection::wherehas('collectionUsers', function ($query) use ($userId, $teaId) {
+                            $query->where('user_id', $userId)->where('tea_id', $teaId);
+                    })->get();}
+
+                ?>
                     <article>
                         <div class="overflow-hidden">
                             <a href="{{ route('details', ['id' => $tea->id]) }}">
@@ -40,11 +44,12 @@
                             <h2 class="text-red-800 font-bold">
                                 {{ $tea->name }}
                             </h2>
-                            @foreach ($collection as $k => $v)
-                                <span
-                                    class="bg-emerald-600 text-neutral-50 rounded-md px-2">{{ $v->type}}</span>
-                            @endforeach
-                            
+                            @if (auth()->check())
+                                @foreach ($collection as $k => $v)
+                                    <span
+                                        class="bg-emerald-600 text-neutral-50 rounded-md px-2">{{ $v->type}}</span>
+                                @endforeach
+                            @endif
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-amber-600">&euro; {{ $tea->price }}</span>
