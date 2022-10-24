@@ -6,7 +6,6 @@
 */
 namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Builder;
 use App\Models\Characteristic;
 use Illuminate\Http\Request;
 use App\Models\Tea;
@@ -17,40 +16,67 @@ class OverviewController extends Controller
 {
     public function overviewTeas(Request $request)
     {
-        // $myCheckboxes = $request->input('characteristic');
-
         if (auth()->check()) {
             $user = auth()->user();
             $userId = $user->id;
 
             if ($request->characteristic) {
-                $id = $request->characteristic;
-    
-                $teas = Tea::whereHas('teasCharacteristics', function ($query) use ($id) {
-                    $query->where('characteristic_id', $id);
-                })->get();
-                }
-                else {
-                    $teas = Tea::get();
-                }
-
-                $characteristics = Characteristic::get();
+                $charId = $request->characteristic;
+                $selectedValues = [];
+                $teasWithChar = [];
                 
-            return view('home', compact('userId', 'teas', 'characteristics'));
-        } 
-        else {
-            if ($request->characteristic) {
-            $id = $request->characteristic;
-
-            $teas = Tea::whereHas('teasCharacteristics', function ($query) use ($id) {
-                $query->where('characteristic_id', $id);
-            })->get();
+                foreach ($charId as $k => $v) {
+                    $value = intval($v);
+                    /* adds value to array */
+                    $selectedValues[] = $value;
+                    
+                    $tea = Tea::whereHas('teasCharacteristics', function ($query) use ($value) {
+                        $query->where('characteristic_id', $value);
+                        })->get();
+                    $teasWithChar[] = $tea;
+                }
+            echo '<pre>';
+            dump("characteristics selected", $selectedValues);
+            dump("Teas with characteristics", $teasWithChar);
+            echo '</pre>';
             }
             else {
                 $teas = Tea::get();
+                $selectedValues = [];
+                $teasWithChar = [];
+            }
+
+            $characteristics = Characteristic::get();
+            return view('home', compact('userId', 'teas', 'characteristics', 'teasWithChar', 'selectedValues'));
+        } 
+        else {
+            if ($request->characteristic) {
+                $charId = $request->characteristic;
+                $selectedValues = [];
+                $teasWithChar = [];
+                
+                foreach ($charId as $k => $v) {
+                    $value = intval($v);
+                    /* adds value to array */
+                    $selectedValues[] = $value;
+                    
+                    $tea = Tea::whereHas('teasCharacteristics', function ($query) use ($value) {
+                        $query->where('characteristic_id', $value);
+                        })->get();
+                    $teasWithChar[] = $tea;
+                }
+            echo '<pre>';
+            dump("characteristics selected", $selectedValues);
+            dump("Teas with characteristics", $teasWithChar);
+            echo '</pre>';
+            }
+            else {
+                $teas = Tea::get();
+                $selectedValues = [];
+                $teasWithChar = [];
             }
             $characteristics = Characteristic::get();
-            return view('home', compact('teas', 'characteristics'));
+            return view('home', compact('teas', 'characteristics', 'teasWithChar', 'selectedValues'));
         }
         return view('home', compact('teas', 'characteristics'));
     }
@@ -59,8 +85,9 @@ class OverviewController extends Controller
     {
         $tea = Tea::find($id);
         $collections = Collection::get();
-        return view('teadetail', ['tea' => $tea, 'collections' => $collections]);
-    }
+        return view('teadetail', compact('tea', 'collections') );
+    }/* non compact version of return:
+    return view('teadetail',['tea' => $tea, 'collections' => $collections]) */
 
     public function showMyCollection()
     {

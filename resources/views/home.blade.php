@@ -22,43 +22,70 @@
         </aside>
         <main class="w-4/5 mx-auto">
             <section class="flex flex-wrap justify-center md:justify-end gap-10 p-2">
-                @foreach ($teas as $tea)
+            @foreach ($teasWithChar as $k => $v)
                 <?php
-                    $teaId = $tea->id;
-                    if (auth()->check()) {
-                        $user = auth()->user();
-                        $userId = $user->id;
-                        $collection = \App\Models\Collection::wherehas('collectionUsers', function ($query) use ($userId, $teaId) {
-                            $query->where('user_id', $userId)->where('tea_id', $teaId);
-                    })->get();}
-
+                    $teas = $v;
+                    /*echo '<pre>';
+                    dump("teas", $teas);
+                    dump($selectedValues);
+                    echo '</pre>';*/
                 ?>
-                    <article>
-                        <div class="overflow-hidden">
-                            <a href="{{ route('details', ['id' => $tea->id]) }}">
-                                <img src="{{ asset('images/' . $tea->image) }}" alt="A photo of {{ $tea->name }} tea."
-                                    class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
-                            </a>
-                        </div>
-                        <div class="flex justify-between mt-2">
-                            <h2 class="text-red-800 font-bold">
-                                {{ $tea->name }}
-                            </h2>
-                            @if (auth()->check())
-                                @foreach ($collection as $k => $v)
-                                    <span
-                                        class="bg-emerald-600 text-neutral-50 rounded-md px-2">{{ $v->type}}</span>
-                                @endforeach
-                            @endif
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-amber-600">&euro; {{ $tea->price }}</span>
-                            <a href="{{ route('details', ['id' => $tea->id]) }}">
-                                <x-ri-arrow-right-s-line class="h-7 w-7 text-emerald-600 hover:translate-x-1" />
-                            </a>
-                        </div>
-                    </article>
+                @foreach ($teas as $tea)
+                    <?php
+                        $teaId = $tea->id;
+                        if (auth()->check()) {
+                            $user = auth()->user();
+                            $userId = $user->id;
+                            $collection = \App\Models\Collection::wherehas('collectionUsers', function ($query) use ($userId, $teaId) {
+                                $query->where('user_id', $userId)->where('tea_id', $teaId);
+                        })->get();}
+                    ?>
+                    
+                        <article>
+                            <div class="overflow-hidden">
+                                <a href="{{ route('details', ['id' => $tea->id]) }}">
+                                    <img src="{{ asset('images/' . $tea->image) }}" alt="A photo of {{ $tea->name }} tea."
+                                        class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
+                                </a>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <h2 class="text-red-800 font-bold">
+                                    {{ $tea->name }}
+                                </h2>
+                                @if (auth()->check())
+                                    @foreach ($collection as $k => $v)
+                                        <span
+                                            class="bg-emerald-600 text-neutral-50 rounded-md px-2">{{ $v->type}}</span>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <div>
+                            @foreach ($selectedValues as $kValue => $vValue)
+                                @if ($vValue == $characteristic->id)
+                                    <?php
+                                        $color = "orange";
+                                    ?>
+                                @endif
+                            @endforeach
+                            <div class="hidden bg-orange-600"></div>
+                                <ul class="flex">
+                                    <h2 class="text-emerald-800">Characteristics:</h2>
+                                    @foreach ($tea->teasCharacteristics as $characteristic)
+                                        <li class="mr-2">{{ $characteristic->name }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-amber-600">&euro; {{ $tea->price }}</span>
+                                <a href="{{ route('details', ['id' => $tea->id]) }}">
+                                    <x-ri-arrow-right-s-line class="h-7 w-7 text-emerald-600 hover:translate-x-1" />
+                                </a>
+                            </div>
+                        </article>
+                    
                 @endforeach
+            @endforeach  
+            
             </section>
         </main>
     </div>
