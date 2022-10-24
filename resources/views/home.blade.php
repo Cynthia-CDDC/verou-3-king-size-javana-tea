@@ -25,9 +25,9 @@
             @foreach ($teasWithChar as $k => $v)
                 <?php
                     $teas = $v;
+                    
                     /*echo '<pre>';
                     dump("teas", $teas);
-                    dump($selectedValues);
                     echo '</pre>';*/
                 ?>
                 @foreach ($teas as $tea)
@@ -41,25 +41,26 @@
                         })->get();}
                     ?>
                     
-                        <article>
-                            <div class="overflow-hidden">
-                                <a href="{{ route('details', ['id' => $tea->id]) }}">
-                                    <img src="{{ asset('images/' . $tea->image) }}" alt="A photo of {{ $tea->name }} tea."
-                                        class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
-                                </a>
-                            </div>
-                            <div class="flex justify-between mt-2">
-                                <h2 class="text-red-800 font-bold">
-                                    {{ $tea->name }}
-                                </h2>
-                                @if (auth()->check())
-                                    @foreach ($collection as $k => $v)
-                                        <span
-                                            class="bg-emerald-600 text-neutral-50 rounded-md px-2">{{ $v->type}}</span>
-                                    @endforeach
-                                @endif
-                            </div>
-                            <div>
+                    <article>
+                        <div class="overflow-hidden">
+                            <a href="{{ route('details', ['id' => $tea->id]) }}">
+                                <img src="{{ asset('images/' . $tea->image) }}" alt="A photo of {{ $tea->name }} tea."
+                                    class="h-72 w-72 hover:scale-105 transition-all ease-in-out delay-150 duration-500" />
+                            </a>
+                        </div>
+                        <div class="flex justify-between mt-2">
+                            <h2 class="text-red-800 font-bold">
+                                {{ $tea->name }}
+                            </h2>
+                            @if (auth()->check())
+                                @foreach ($collection as $k => $v)
+                                    <span
+                                        class="bg-emerald-600 text-neutral-50 rounded-md px-2">{{ $v->type}}</span>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div>
+                        @if ($selectedValues > 0)
                             @foreach ($selectedValues as $kValue => $vValue)
                                 @if ($vValue == $characteristic->id)
                                     <?php
@@ -75,17 +76,16 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-amber-600">&euro; {{ $tea->price }}</span>
-                                <a href="{{ route('details', ['id' => $tea->id]) }}">
-                                    <x-ri-arrow-right-s-line class="h-7 w-7 text-emerald-600 hover:translate-x-1" />
-                                </a>
-                            </div>
-                        </article>
-                    
+                        @endif
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-600">&euro; {{ $tea->price }}</span>
+                            <a href="{{ route('details', ['id' => $tea->id]) }}">
+                                <x-ri-arrow-right-s-line class="h-7 w-7 text-emerald-600 hover:translate-x-1" />
+                            </a>
+                        </div>
+                    </article>
                 @endforeach
-            @endforeach  
-            
+            @endforeach
             </section>
         </main>
     </div>

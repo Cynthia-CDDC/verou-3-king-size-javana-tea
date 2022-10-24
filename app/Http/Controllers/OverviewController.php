@@ -15,7 +15,8 @@ use App\Models\CollectionTeaUser;
 class OverviewController extends Controller
 {
     public function overviewTeas(Request $request)
-    {
+    { /* TODO: avoid duplicates in $teasWithChar = []; 
+               highlight selection in characteristics line */
         if (auth()->check()) {
             $user = auth()->user();
             $userId = $user->id;
@@ -30,20 +31,17 @@ class OverviewController extends Controller
                     /* adds value to array */
                     $selectedValues[] = $value;
                     
-                    $tea = Tea::whereHas('teasCharacteristics', function ($query) use ($value) {
+                    $teas = Tea::whereHas('teasCharacteristics', function ($query) use ($value) {
                         $query->where('characteristic_id', $value);
                         })->get();
-                    $teasWithChar[] = $tea;
+                    $teasWithChar[] = $teas;
                 }
-            echo '<pre>';
-            dump("characteristics selected", $selectedValues);
-            dump("Teas with characteristics", $teasWithChar);
-            echo '</pre>';
             }
             else {
-                $teas = Tea::get();
-                $selectedValues = [];
                 $teasWithChar = [];
+                $teas = Tea::get();
+                $teasWithChar[]= $teas;
+                $selectedValues = 0;
             }
 
             $characteristics = Characteristic::get();
@@ -60,25 +58,22 @@ class OverviewController extends Controller
                     /* adds value to array */
                     $selectedValues[] = $value;
                     
-                    $tea = Tea::whereHas('teasCharacteristics', function ($query) use ($value) {
+                    $teas = Tea::whereHas('teasCharacteristics', function ($query) use ($value) {
                         $query->where('characteristic_id', $value);
                         })->get();
-                    $teasWithChar[] = $tea;
+                    $teasWithChar[] = $teas;
                 }
-            echo '<pre>';
-            dump("characteristics selected", $selectedValues);
-            dump("Teas with characteristics", $teasWithChar);
-            echo '</pre>';
             }
             else {
-                $teas = Tea::get();
-                $selectedValues = [];
                 $teasWithChar = [];
+                $teas = Tea::get();
+                $teasWithChar[]= $teas;
+                $selectedValues = 0;
             }
             $characteristics = Characteristic::get();
             return view('home', compact('teas', 'characteristics', 'teasWithChar', 'selectedValues'));
         }
-        return view('home', compact('teas', 'characteristics'));
+        return view('home', compact('teas', 'characteristics', 'selectedValues'));
     }
 
     public function detailsTea($id)
