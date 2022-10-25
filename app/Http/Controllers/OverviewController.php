@@ -11,12 +11,12 @@ use Illuminate\Http\Request;
 use App\Models\Tea;
 use App\Models\Collection;
 use App\Models\CollectionTeaUser;
+use Illuminate\Support\Arr;
 
 class OverviewController extends Controller
 {
     public function overviewTeas(Request $request)
-    { /* TODO: avoid duplicates in $teasWithChar = []; 
-               highlight selection in characteristics line */
+    {
         if (auth()->check()) {
             $user = auth()->user();
             $userId = $user->id;
@@ -30,12 +30,11 @@ class OverviewController extends Controller
                     $value = intval($v);
                     /* adds value to array */
                     $selectedValues[] = $value;
-                    
-                    $teas = Tea::whereHas('teasCharacteristics', function ($query) use ($value) {
-                        $query->where('characteristic_id', $value);
-                        })->get();
-                    $teasWithChar[] = $teas;
                 }
+                $teas = Tea::whereHas('teasCharacteristics', function ($query) use ($value) {
+                    $query->where('characteristic_id', $value);
+                    })->get();
+                $teasWithChar[] = $teas;
             }
             else {
                 $teasWithChar = [];
@@ -57,12 +56,11 @@ class OverviewController extends Controller
                     $value = intval($v);
                     /* adds value to array */
                     $selectedValues[] = $value;
-                    
+                }
                     $teas = Tea::whereHas('teasCharacteristics', function ($query) use ($value) {
                         $query->where('characteristic_id', $value);
                         })->get();
                     $teasWithChar[] = $teas;
-                }
             }
             else {
                 $teasWithChar = [];

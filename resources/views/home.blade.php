@@ -22,13 +22,15 @@
         </aside>
         <main class="w-4/5 mx-auto">
             <section class="flex flex-wrap justify-center md:justify-end gap-10 p-2">
+            <?php
+                /*echo '<pre>';
+                dump($teasWithChar);
+                echo '</pre>';*/
+            
+            ?>    
             @foreach ($teasWithChar as $k => $v)
                 <?php
                     $teas = $v;
-                    
-                    /*echo '<pre>';
-                    dump("teas", $teas);
-                    echo '</pre>';*/
                 ?>
                 @foreach ($teas as $tea)
                     <?php
@@ -59,23 +61,15 @@
                                 @endforeach
                             @endif
                         </div>
-                        <div>
                         @if ($selectedValues > 0)
-                            @foreach ($selectedValues as $kValue => $vValue)
-                                @if ($vValue == $characteristic->id)
-                                    <?php
-                                        $color = "orange";
-                                    ?>
-                                @endif
-                            @endforeach
-                            <div class="hidden bg-orange-600"></div>
-                                <ul class="flex">
-                                    <h2 class="text-emerald-800">Characteristics:</h2>
-                                    @foreach ($tea->teasCharacteristics as $characteristic)
-                                        <li class="mr-2">{{ $characteristic->name }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                        <div>
+                            <ul class="flex">
+                                <h2 class="mr-2 text-emerald-800">Characteristics:</h2>
+                                @foreach ($tea->teasCharacteristics as $characteristic)
+                                    <li class="mr-2">{{ $characteristic->name }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                         @endif
                         <div class="flex justify-between items-center">
                             <span class="text-amber-600">&euro; {{ $tea->price }}</span>
